@@ -3,11 +3,13 @@ package br.uff.model;
 public class Region {
 	
 	private String name;
+	private Continent continent;
 	private Player player;
 	private Integer numArmy;
 	
-	public Region(String name, Player player, Integer numArmy) {
+	public Region(String name, Continent continent, Player player, Integer numArmy) {
 		this.name = name;
+		this.continent = continent;
 		this.player = player;
 		this.numArmy = numArmy;
 	}
@@ -18,6 +20,14 @@ public class Region {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Continent getContinent() {
+		return continent;
+	}
+
+	public void setContinent(Continent continent) {
+		this.continent = continent;
 	}
 
 	public Player getPlayer() {

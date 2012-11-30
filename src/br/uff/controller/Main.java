@@ -11,6 +11,11 @@ import br.uff.model.*;
 
 public class Main {
 	
+	private static Map <Integer, Continent> continents = new HashMap<Integer, Continent>();
+	static {
+		continents.put(1, new Continent("America do Sul", 10);
+	}
+	
 	private static Map <Integer, Player> players = new HashMap<Integer, Player>();
 	static {
 		players.put(1, new Player("Player 1"));
@@ -19,8 +24,8 @@ public class Main {
 	
 	private static Map <Integer, Region> regions = new HashMap<Integer, Region>();
 	static {
-		regions.put(1, new Region("Região 1", players.get(1), 2));
-		regions.put(2, new Region("Região 2", players.get(2), 3));
+		regions.put(1, new Region("Região 1", continents.get(1), players.get(1), 2));
+		regions.put(2, new Region("Região 2", continents.get(1), players.get(2), 3));
 	}
 
 	private static Player playerUser = players.get(1);
