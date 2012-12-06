@@ -1,100 +1,55 @@
 package br.uff.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
+import java.util.Scanner;
 
-import br.uff.model.*;
+import br.uff.model.Continent;
+import br.uff.model.Player;
+import br.uff.model.PlayerIA;
+import br.uff.model.PlayerUser;
+import br.uff.model.Region;
 
 public class Main {
 	
 	private static Map <Integer, Continent> continents = new HashMap<Integer, Continent>();
 	static {
-		continents.put(1, new Continent("America do Sul", 10);
+		continents.put(1, new Continent("America do Sul", 10));
 	}
 	
 	private static Map <Integer, Player> players = new HashMap<Integer, Player>();
 	static {
-		players.put(1, new Player("Player 1"));
-		players.put(2, new Player("Player 2"));
+		players.put(1, new PlayerUser("Player 1"));
+		players.put(2, new PlayerIA("Player 2"));
 	}
 	
 	private static Map <Integer, Region> regions = new HashMap<Integer, Region>();
 	static {
-		regions.put(1, new Region("Regi„o 1", continents.get(1), players.get(1), 2));
-		regions.put(2, new Region("Regi„o 2", continents.get(1), players.get(2), 3));
+		regions.put(1, new Region("Regi√£o 1", continents.get(1), players.get(1), 5));
+		regions.put(2, new Region("Regi√£o 2", continents.get(1), players.get(2), 3));
+		
+		//Fica em loop? Da problema?
+		regions.get(1).addNeighbour(regions.get(2));
+		regions.get(2).addNeighbour(regions.get(1));
 	}
 
 	private static Player playerUser = players.get(1);
 	
+	
 	public static void main(String[] args) {
-		Main main = new Main();
-		main.attack(1, 2, 1, 2);
-	}
-	
-	public void attack(Integer regionIdA, Integer regionIdD, Integer armyType, Integer armyQty) {
-		Region regionAttack = regions.get(regionIdA);
-		Region regionDefense = regions.get(regionIdD);
-
-		Player playerAttack = regionAttack.getPlayer();
-		Player playerDefense = regionDefense.getPlayer();
-
-		ArrayList diceAttack = new ArrayList();
-		ArrayList diceDefense = new ArrayList();
+		Scanner in = new Scanner(System.in);
 		
-		//Confere se È o dono da regi„o
-		if (playerUser == playerAttack) {
-			//Confere se tem army suficiente
-			if (armyQty <= regionAttack.getNumArmy()) {
-				//Joga Dados Ataque (total escolhido)
-				System.out.println("Ataque");
-				for (int i=0; i < armyQty; i++) {
-					diceAttack.add(throwDice());
-					System.out.println(diceAttack.get(i));
-				}
-				//Joga dados Defesa (total no pais)
-				System.out.println("Defesa");
-				for (int i=0; i < regionDefense.getNumArmy(); i++) {
-					diceDefense.add(throwDice());
-					System.out.println(diceDefense.get(i));
-				}
-				
-				//Compara Dados (mudar para comparar maior com maior)
-				for (int i=0; i < armyQty; i++) {
-					for (int j=0; j < regionDefense.getNumArmy(); j++) {
-						if (Integer.parseInt(diceAttack.get(i).toString()) <= Integer.parseInt(diceDefense.get(j).toString()))
-							diceAttack.remove(new Integer(i));
-						if (Integer.parseInt(diceAttack.get(i).toString()) > Integer.parseInt(diceDefense.get(j).toString()))
-							diceDefense.remove(new Integer(j));
-					}
-				}
-				
-				//Resultado das tropas
-				System.out.println("Ataque");
-				for (int i=0; i < armyQty; i++) {
-					System.out.println(diceAttack.get(i));
-				}
-				System.out.println("Defesa");
-				for (int i=0; i < regionDefense.getNumArmy(); i++) {
-					System.out.println(diceDefense.get(i));
-				}
-			}
-			else {
-				System.out.println("VocÍ n„o tem a quantidade de exercito escolhida");
-			}
+		while (true) {
+			System.out.println();
+			System.out.println("### Nova Rodada ###");
+			System.out.println("Ataque # Num Army:" + regions.get(1).getNumArmy());
+			System.out.println("Defesa # Num Army:" + regions.get(2).getNumArmy());
+			System.out.println();
 			
-		}
-		else {
-			System.out.println("VocÍ n„o È o dono da regi„o selecionada");
+			Region regionAttack = regions.get(1);
+			Region regionDefense = regions.get(2);
+			
+			playerUser.attack(regionAttack, regionDefense, in.nextInt());
 		}
 	}
-	
-	public int throwDice() {
-		Random r = new Random();
-		return r.nextInt(6) + 1; //0~5 + 1 = 1~6
-	}
-
 }

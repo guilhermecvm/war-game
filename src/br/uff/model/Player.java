@@ -1,19 +1,8 @@
 package br.uff.model;
 
-public class Player {
+public interface Player {
 	
-	private String name;
-	
-	public Player(String name) {
-		this.name = name;
-	}
+	//attackQty = num soldados (sem incluir o que tem que ficar no território)
+	public void attack(Region regionAttack, Region regionDefense, Integer attackQty);
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 }
