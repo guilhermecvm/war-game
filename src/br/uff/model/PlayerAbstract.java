@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import br.uff.controller.Main;
+import java.util.Scanner;
 
 public abstract class PlayerAbstract implements Player {
 
@@ -129,9 +130,17 @@ public abstract class PlayerAbstract implements Player {
             }
         }
 
-        //Verifica se a região ainda tem exército
-        if (regionDefense.getNumArmy() == 0) {
-            System.out.println("Ataque tomou o terrório, escolha o número de soldados para passar");
+    }
+    @Override
+    public boolean moveSoldiersAttack(Region base, Region destination, Integer soldiersNumber) {
+        if ((base.getNumArmy() - soldiersNumber) > 0){
+            base.setNumArmy(base.getNumArmy() - soldiersNumber);
+            destination.setNumArmy(destination.getNumArmy() - soldiersNumber);
+            System.out.println("Soldados enviados a nova regiao com sucesso.");
+            return true;
         }
+        System.out.println("Número de soldados inválido. Deve ter pelo menos 1 soldado tomando conta da base antiga! Digite novamente:");
+        return false;
+        
     }
 }
