@@ -23,9 +23,6 @@ public class PlayerIA extends PlayerAbstract {
             System.out.println("Atacando da região " + regionAttack.getName()
                     + " para a região " + regionDefense.getName() + " com " + attackQty + " soldados.");
 
-            System.out.println("random " + r.nextInt(10));
-            System.out.println("random " + r.nextInt(10));
-            System.out.println("random " + r.nextInt(10));
             this.attack(regionAttack, regionDefense, attackQty);
         }
     }
