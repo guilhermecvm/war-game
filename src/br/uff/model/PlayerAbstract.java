@@ -135,7 +135,7 @@ public abstract class PlayerAbstract implements Player {
     public boolean moveSoldiersAttack(Region base, Region destination, Integer soldiersNumber) {
         if ((base.getNumArmy() - soldiersNumber) > 0){
             base.setNumArmy(base.getNumArmy() - soldiersNumber);
-            destination.setNumArmy(destination.getNumArmy() - soldiersNumber);
+            destination.setNumArmy(destination.getNumArmy() + soldiersNumber);
             System.out.println("Soldados enviados a nova regiao com sucesso.");
             return true;
         }
