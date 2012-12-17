@@ -11,6 +11,7 @@ nb-configuration.xml
 build.xml
 manifest.mf
 src/manifest.mf
+nbproject/
 
 #eclipse
 *.pydevproject

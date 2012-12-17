@@ -44,5 +44,13 @@ public class PlayerUser extends PlayerAbstract {
 		}
 		
 		this.attack(regionAttack, regionDefense, attackQty);
+                //Verifica se a região sob ataque ainda tem exército
+                if (regionDefense.getNumArmy() == 0){
+                    System.out.println("Ataque tomou o terrório, escolha o número de soldados para passar");
+                    Boolean armyMoved = false;
+                    while(!armyMoved) {
+                        armyMoved = this.moveSoldiersAttack(regionAttack, regionDefense, in.nextInt());
+                    }
+                }
 	}	
 }

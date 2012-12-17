@@ -14,5 +14,6 @@ public interface Player {
         public ArrayList<Region> getRegions();
         public ArrayList<Region> getEnemyRegions();
         public ArrayList<Region[]> getPossibleMoves();
+        public boolean moveSoldiersAttack(Region base, Region destination, Integer soldiersNumber);
 
 }
