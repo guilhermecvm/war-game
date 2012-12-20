@@ -11,6 +11,7 @@ public abstract class PlayerAbstract implements Player {
 
     public Main main = new Main();
     private String name;
+    private int armyAvaiable = 0;
 
     public String getName() {
         return name;
@@ -18,6 +19,20 @@ public abstract class PlayerAbstract implements Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public void updateArmy(){
+        int numberOfRegions = this.getRegions().size();
+        if (numberOfRegions <= 6){
+            this.armyAvaiable += 3;
+        }else{
+            this.armyAvaiable += numberOfRegions/2;
+        }
+        for (Continent cont : Data.continents.values()) {
+            if(this.getRegions().containsAll(cont.getRegions())){
+                this.armyAvaiable += cont.getRegions().size();
+            }
+        }
     }
 
     public ArrayList<Region> getRegions() {

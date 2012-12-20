@@ -1,7 +1,11 @@
 package br.uff.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import sun.tools.tree.ThisExpression;
 
 public class Region {
 
@@ -9,13 +13,14 @@ public class Region {
     private Continent continent;
     private Player player;
     private Integer numArmy;
-    private List<Region> neighbourhood;
+    private ArrayList<Region> neighbourhood;
 
-    public Region(String name, Continent continent, Player player, Integer numArmy) {
+    public Region(String name, Continent continent, Player player) {
         this.name = name;
         this.continent = continent;
+        continent.addRegion(this);
         this.player = player;
-        this.numArmy = numArmy;
+        this.numArmy = 1;
         this.neighbourhood = new ArrayList<Region>();
     }
 
@@ -29,10 +34,6 @@ public class Region {
 
     public Continent getContinent() {
         return continent;
-    }
-
-    public void setContinent(Continent continent) {
-        this.continent = continent;
     }
 
     public Player getPlayer() {
@@ -66,5 +67,22 @@ public class Region {
 
     public List<Region> getNeighbourhood() {
         return neighbourhood;
+    }
+    
+    //TODO: resolver para  quando num de regioes nao for multiplo do num de players
+    public static void distributeRegions(){
+        Map<Integer, Region> regions = Data.regions;
+        Map<Integer, Player> players = Data.players;
+        int qtyForPerson = regions.size()/players.size();
+        int playerNumber = 1;
+        int regionNumber;
+        for(int i = 1; i == regions.size(); i+=qtyForPerson){
+            for(int j = 1; j==qtyForPerson; j++){
+                regionNumber = (new Random()).nextInt(regions.size());
+                regions.get(regionNumber).setPlayer(players.get(playerNumber));
+                regions.remove(regionNumber);
+                playerNumber ++;
+            }
+        }
     }
 }
