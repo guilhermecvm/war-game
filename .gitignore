@@ -12,6 +12,8 @@ build.xml
 manifest.mf
 src/manifest.mf
 nbproject/
+lib/nblibraries.properties
+doc/Thumbs.db
 
 #eclipse
 *.pydevproject

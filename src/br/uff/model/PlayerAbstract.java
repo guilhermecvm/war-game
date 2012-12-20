@@ -21,7 +21,7 @@ public abstract class PlayerAbstract implements Player {
     }
 
     public ArrayList<Region> getRegions() {
-    // Retorna todas as regiões que eu estou dominando no momento
+        // Retorna todas as regiões que eu estou dominando no momento
         ArrayList<Region> regions = new ArrayList<Region>();
         Region reg;
         for (int i = 1; i <= Data.regions.size(); i++) {
@@ -36,7 +36,7 @@ public abstract class PlayerAbstract implements Player {
     }
 
     public ArrayList<Region> getEnemyRegions() {
-    // Retorna todas as regiões que eu NÃO estou dominando no momento
+        // Retorna todas as regiões que eu NÃO estou dominando no momento
         ArrayList<Region> regions = new ArrayList<Region>();
         Region reg;
         for (int i = 1; i <= Data.regions.size(); i++) {
@@ -50,20 +50,22 @@ public abstract class PlayerAbstract implements Player {
     }
 
     public ArrayList<Region[]> getPossibleMoves() {
-    // Retorna todas as minhas possíveis jogadas
-    // Uma jogada é possível desde que uma região minha seja vizinha de uma região inimiga
-    // e desde que eu tenha mais de 1 soldado nesta minha região
+        // Retorna todas as minhas possíveis jogadas
+        // Uma jogada é possível desde que uma região minha tenha mais de 1 soldado
+        // e que a região vizinha seja de um inimigo
         ArrayList<Region[]> moves = new ArrayList<Region[]>();
         ArrayList<Region> myRegions = this.getRegions();
-        ArrayList<Region> enemyRegions = this.getEnemyRegions();
 
         for (int i = 0; i < myRegions.size(); i++) {
             Region myRegion = myRegions.get(i);
-            for (int j = 0; j < enemyRegions.size(); j++) {
-                Region enemyRegion = enemyRegions.get(j);
-                if (myRegion.isNeighbour(enemyRegion) && (myRegion.getNumArmy() > 1)) {
-                    Region[] move = {myRegion, enemyRegion};
-                    moves.add(move);
+            ArrayList<Region> neigbourhood = (ArrayList<Region>) myRegion.getNeighbourhood();
+            if (myRegion.getNumArmy() > 1) {
+                for (int j = 0; j < neigbourhood.size(); j++) {
+                    Region neigbour = neigbourhood.get(j);
+                    if (!neigbour.getPlayer().equals(this)) {
+                        Region[] move = {myRegion, neigbour};
+                        moves.add(move);
+                    }
                 }
             }
         }
@@ -102,15 +104,18 @@ public abstract class PlayerAbstract implements Player {
 
         //Mostra Resultado dos Dados do Ataque
         System.out.println("Ataque");
-        for (int i = 0; i < attackQty; i++) {
+        for (int i = 0; i < attackQty - 1; i++) {
             System.out.print(diceAttack.get(i) + ",");
         }
+        System.out.print(diceAttack.get(attackQty - 1));
+
         System.out.println();
         //Mostra Resultado dos Dados da Defesa
         System.out.println("Defesa");
-        for (int i = 0; i < defenseQty; i++) {
+        for (int i = 0; i < defenseQty - 1; i++) {
             System.out.print(diceDefense.get(i) + ",");
         }
+        System.out.print(diceDefense.get(defenseQty - 1));
         System.out.println();
         System.out.println();
 
@@ -131,9 +136,10 @@ public abstract class PlayerAbstract implements Player {
         }
 
     }
+
     @Override
     public boolean moveSoldiersAttack(Region base, Region destination, Integer soldiersNumber) {
-        if ((base.getNumArmy() - soldiersNumber) > 0){
+        if ((base.getNumArmy() - soldiersNumber) > 0) {
             base.setNumArmy(base.getNumArmy() - soldiersNumber);
             destination.setNumArmy(destination.getNumArmy() + soldiersNumber);
             System.out.println("Soldados enviados a nova regiao com sucesso.");
@@ -141,6 +147,6 @@ public abstract class PlayerAbstract implements Player {
         }
         System.out.println("Número de soldados inválido. Deve ter pelo menos 1 soldado tomando conta da base antiga! Digite novamente:");
         return false;
-        
+
     }
 }
