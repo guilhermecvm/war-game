@@ -21,9 +21,6 @@ public class Data {
 	static {
 		regions.put(1, new Region("Região 1", continents.get(1), players.get(1)));
 		regions.put(2, new Region("Região 2", continents.get(1), players.get(2)));
-                
-                regions.get(1).setNumArmy(5);
-                regions.get(2).setNumArmy(3);
 		
 		//Fica em loop? Da problema?
 		regions.get(1).addNeighbour(regions.get(2));

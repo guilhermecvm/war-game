@@ -10,7 +10,6 @@ public class PlayerUser extends PlayerAbstract {
 
 	@Override
 	public void play() {
-		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		
 		System.out.println("Com qual país quer atacar?");
@@ -44,13 +43,14 @@ public class PlayerUser extends PlayerAbstract {
 		}
 		
 		this.attack(regionAttack, regionDefense, attackQty);
-                //Verifica se a região sob ataque ainda tem exército
-                if (regionDefense.getNumArmy() == 0){
-                    System.out.println("Ataque tomou o terrório, escolha o número de soldados para passar");
-                    Boolean armyMoved = false;
-                    while(!armyMoved) {
-                        armyMoved = this.moveSoldiersAttack(regionAttack, regionDefense, in.nextInt());
-                    }
-                }
+		
+        //Verifica se a região sob ataque ainda tem exército
+        if (regionDefense.getNumArmy() == 0) {
+            System.out.println("Ataque tomou o terrório, escolha o número de soldados para passar");
+            Boolean armyMoved = false;
+            while(!armyMoved) {
+                armyMoved = this.moveSoldiersAttack(regionAttack, regionDefense, in.nextInt());
+            }
+        }
 	}	
 }

@@ -65,27 +65,4 @@ public class Region {
     public List<Region> getNeighbourhood() {
         return neighbourhood;
     }
-    
-    public static void distributeRegions(){
-        List<Region> regions = new ArrayList<Region>();
-        regions.addAll(Data.regions.values());
-
-        int qtyForPerson = regions.size()/Data.players.size();
-        int regionNumber;
-        
-        for (Player p : Data.players.values()) {
-            for (int i = 0; i < qtyForPerson; i++) {
-                regionNumber = (new Random()).nextInt(regions.size());
-                regions.get(regionNumber).setPlayer(p);
-                regions.remove(regionNumber);
-            }
-        }
-        
-        int i = 1;
-        for (Region r : regions) {
-            Player p = Data.players.get(i);
-            r.setPlayer(p);
-            i++;
-        }
-    }
 }

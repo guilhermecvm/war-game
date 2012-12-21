@@ -6,12 +6,12 @@ public class Continent {
 	
 	private String name;
 	private Integer bonus;
-        private ArrayList<Region> regions;
+	private ArrayList<Region> regions;
 	
 	public Continent(String name, Integer bonus) {
 		this.name = name;
 		this.bonus = bonus;
-                this.regions = new ArrayList<Region>();
+		this.regions = new ArrayList<Region>();
 	}
 
 	public String getName() {
@@ -29,13 +29,12 @@ public class Continent {
 	public void setBonus(Integer bonus) {
 		this.bonus = bonus;
 	}
-        
-        public ArrayList<Region> getRegions(){
-            return regions;
-        }
-        
-        public void addRegion(Region reg){
-            this.regions.add(reg);
-        }
 	
+	public ArrayList<Region> getRegions() {
+        return regions;
+    }
+    
+    public void addRegion(Region reg) {
+        this.regions.add(reg);
+    }
 }

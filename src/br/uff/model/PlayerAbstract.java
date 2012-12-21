@@ -4,15 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.uff.controller.Main;
-import java.util.Scanner;
-
 public abstract class PlayerAbstract implements Player {
-
-    public Main main = new Main();
+	
     private String name;
     private int armyAvaiable = 0;
-
+    
     public String getName() {
         return name;
     }
@@ -21,29 +17,41 @@ public abstract class PlayerAbstract implements Player {
         this.name = name;
     }
     
-    public void updateArmy(){
+    public int getArmyAvaiable() {
+		return armyAvaiable;
+	}
+
+	public void setArmyAvaiable(int armyAvaiable) {
+		this.armyAvaiable = armyAvaiable;
+	}
+
+	public void updateArmy() {
         int numberOfRegions = this.getRegions().size();
-        if (numberOfRegions <= 6){
-            this.armyAvaiable += 3;
-        }else{
-            this.armyAvaiable += numberOfRegions/2;
+        
+        //Aumenta army para distribuir de acordo com regiões dominadas
+        if (numberOfRegions <= 6) {
+            this.setArmyAvaiable(this.getArmyAvaiable() + 3);
+        } else {
+            this.setArmyAvaiable(this.getArmyAvaiable() + numberOfRegions/2);
         }
+        
+        //Aumenta army para distribuir caso seja dono de um continente
         for (Continent cont : Data.continents.values()) {
-            if(this.getRegions().containsAll(cont.getRegions())){
-                this.armyAvaiable += cont.getRegions().size()/2;
+            if (this.getRegions().containsAll(cont.getRegions())) {
+                this.setArmyAvaiable(this.getArmyAvaiable() + cont.getRegions().size()/2);
             }
         }
     }
     
-    public boolean sendArmyTo(Region destination, int numArmy){
-        if (this.getRegions().contains(destination)){
-            destination.setNumArmy(destination.getNumArmy()+numArmy);
-            this.armyAvaiable -= numArmy;
+    public boolean sendArmyTo(Region destination, int numArmy) {
+        if (this.getRegions().contains(destination)) {
+            destination.setNumArmy(destination.getNumArmy() + numArmy);
+            this.setArmyAvaiable(this.getArmyAvaiable() - numArmy);
             return true;
         }
         return false;
     }
-
+    
     public ArrayList<Region> getRegions() {
         // Retorna todas as regiões que eu estou dominando no momento
         ArrayList<Region> regions = new ArrayList<Region>();
@@ -58,7 +66,7 @@ public abstract class PlayerAbstract implements Player {
 
         return regions;
     }
-
+    
     public ArrayList<Region> getEnemyRegions() {
         // Retorna todas as regiões que eu NÃO estou dominando no momento
         ArrayList<Region> regions = new ArrayList<Region>();
@@ -72,7 +80,7 @@ public abstract class PlayerAbstract implements Player {
 
         return regions;
     }
-
+    
     public ArrayList<Region[]> getPossibleMoves() {
         // Retorna todas as minhas possíveis jogadas
         // Uma jogada é possível desde que uma região minha tenha mais de 1 soldado
@@ -171,6 +179,5 @@ public abstract class PlayerAbstract implements Player {
         }
         System.out.println("Número de soldados inválido. Deve ter pelo menos 1 soldado tomando conta da base antiga! Digite novamente:");
         return false;
-
     }
 }
