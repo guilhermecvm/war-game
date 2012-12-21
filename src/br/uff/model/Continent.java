@@ -11,6 +11,7 @@ public class Continent {
 	public Continent(String name, Integer bonus) {
 		this.name = name;
 		this.bonus = bonus;
+                this.regions = new ArrayList<Region>();
 	}
 
 	public String getName() {

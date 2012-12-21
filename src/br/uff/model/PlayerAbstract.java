@@ -30,9 +30,18 @@ public abstract class PlayerAbstract implements Player {
         }
         for (Continent cont : Data.continents.values()) {
             if(this.getRegions().containsAll(cont.getRegions())){
-                this.armyAvaiable += cont.getRegions().size();
+                this.armyAvaiable += cont.getRegions().size()/2;
             }
         }
+    }
+    
+    public boolean sendArmyTo(Region destination, int numArmy){
+        if (this.getRegions().contains(destination)){
+            destination.setNumArmy(destination.getNumArmy()+numArmy);
+            this.armyAvaiable -= numArmy;
+            return true;
+        }
+        return false;
     }
 
     public ArrayList<Region> getRegions() {
