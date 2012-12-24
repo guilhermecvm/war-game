@@ -1,0 +1,97 @@
+﻿1) Para baixar o código pela primeira vez na sua máquina:
+Por exemplo, eu tenho uma pasta chamada workspace, onde tenho todos os meus projetos.
+-Entre no diretório onde deseja colocar o projeto (no meu caso cd workspace/)
+-Execute o comando $git clone https://github.com/guilhermecvm/war-game.git
+-Será copiado toda o conteúdo do repositório para uma nova pasta no seu computador.
+(No meu caso, como estava em workspace, ele copiou para workspace/war-game)
+
+*Como default, quando você baixa o projeto, você está na branch 'master'. 
+*Imaginem que este é o branch de produção, onde temos uma versão estável para apresentar.
+**Combinamos de desenvolver sempre no branch 'dev', então vamos mudar para esta branch
+
+2) Mudando para a branch 'dev':
+-Execute o comando $git branch --track dev origin/dev
+Isso irá criar uma branch local no seu pc, chamada 'dev' e vai criar uma referência dizendo
+que essa sua branch 'dev' será usada para parear com a branch 'dev' do github.
+
+3) Conferindo e começando a trabalhar
+-Execute o comando $git status
+Agora confira se a mensagem exibida foi a seguinte:
+# On branch dev
+nothing to commit (working directory clean)
+
+Se estiver na mensagem estiver algo diferente de "On branch dev",
+execute o comando $git checkout dev
+Isso vai mudar da branch que você estava para a branch 'dev'
+
+Agora você pode abrir seu projeto na sua IDE favorita =)
+Altere o que tiver que alterar, crie o que tiver que criar.
+
+4) Pareando seu trabalho com o repositório do github
+
+Antes de subir o seu código, você deve parear com o código do repositório.
+Para isso execute o comando $git pull
+Caso alguma exista alguma mudança no repositório que ainda não está na sua máquina ela será baixada agora.
+Finalmente, vamos subir o seu trabalho para o repositório do github.
+-Execute o comando $git status
+Você deve ver uma lista com todos os arquivos que alterou ou criou.
+Algo parecido com isso:
+
+# On branch dev
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   Helper.java
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	doc/git_helper.doc
+no changes added to commit (use "git add" and/or "git commit -a")
+Para adicionar todos os arquivos no seu commit, execute o comando $git add .
+Caso você não queira adicionar todos os arquivos, adicione separadamente  pelo mesmo comando mas passando o caminho do arquivo como parâmetro, por exemplo: $git add doc/git_helper.doc
+Caso queira adicionar todos os arquivos de uma pasta, utilize por exemplo: $git add doc/
+Ok. Suas mudanças foram adicionadas, agora você precisa commita-las na sua branch.
+Execute o comando $git commit -m ”Adicione aqui a sua mensagem”
+Caso essas mudanças sejam suficientes para fechar uma tarefa, você pode adicionar na mensagem a referência para o github fechá-la automaticamente para você. 
+Por exemplo: $git commit -m “Criando manual básico do git. Closes #13”
+Beleza, seu trabalho foi feito na sua branch local, mas ainda não está no servidor do github e o resto do grupo ainda não consegue usar esse código.
+Para fazer o upload do(s) seu(s) commit(s), execute o seguinte comando $git push
+Se você seguiu este tutorial, isto deve funcionar, pois a sua branch 'dev' está referenciando a branch 'dev' do github. Caso você não tenha conseguido executar o comando com sucesso, tente desta vez:
+$git push origin dev
+Deste modo, você especifica que quer subir seus commits para a branch 'dev' do github.
+
+Pronto. Seu código está no github e todos já podemos vê-lo/usá-lo.
+Daqui para frente, você vai fazer sempre o mesmo. Utilize somente os passos 3 e 4 para trabalhar depois de ter baixado o projeto da primera vez na sua máquina.
+
+Resumo:
+
+$git clone https://github.com/guilhermecvm/war-game.git 
+baixa o projeto pela primeira vez para sua máquina
+
+$git branch --track dev origin/dev
+cria a branch com nome 'dev' na sua máquina e a associa a branch dev do github
+
+$git status
+mostra em qual branch você está trabalhando e exibe suas alterações ainda não commitadas.
+
+$git checkout dev
+troca da branch atual para a branch 'dev'
+
+$git pull
+atualiza o seu repositório local caso você ainda não tenha alguma alteração já subida para o github.
+(o comando $git fetch  também faz a mesma coisa)
+
+$git add .
+Adiciona todas as suas mudanças no seu commit. Caso não deseje adicionar todos os arquivos no commit, adicione arquivo por arquivo ($git add doc/git_helper.doc)
+ou diretório por diretório ($git add doc/)
+
+$git commit -m “Criando manual básico do git. Closes #13”
+Commita localmente suas mudanças. Sempre que possível utilizem a referência às issues pelo #numero_da_issue na mensagem
+
+$git push
+Faz upload para o github das suas mudanças já commitadas.
+(caso não funcione, tente $git push origin dev)
+
+
