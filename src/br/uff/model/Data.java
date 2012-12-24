@@ -19,8 +19,12 @@ public class Data {
 	
 	public static Map <Integer, Region> regions = new HashMap<Integer, Region>();
 	static {
-		regions.put(1, new Region("Região 1", continents.get(1), players.get(1)));
-		regions.put(2, new Region("Região 2", continents.get(1), players.get(2)));
+		regions.put(1, new Region("Rio das Pedras", continents.get(1), players.get(1), "rio.png"));
+		regions.put(2, new Region("Gardenia", continents.get(1), players.get(2), "gardenia.png"));
+		
+		//Set Position
+		regions.get(1).setPosition(145, 248, 185, 275, 254, 484);
+		regions.get(2).setPosition(110, 302, 136, 185, 320, 437);
 		
 		//Fica em loop? Da problema?
 		regions.get(1).addNeighbour(regions.get(2));
