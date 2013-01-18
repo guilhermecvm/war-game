@@ -13,10 +13,10 @@ public class Region {
     private String img;
     private Integer x, y, x1, x2, y1, y2;
 
-    public Region(String name, Continent continent, Player player, String img) {
+    public Region(String name, Continent continent, String img) {
         this.name = name;
         this.continent = continent;
-        this.player = player;
+        this.player = null;
         this.numArmy = 1;
         this.neighbourhood = new ArrayList<Region>();
         continent.addRegion(this);
@@ -68,13 +68,9 @@ public class Region {
         return neighbourhood;
     }
     
-    public void setPosition(Integer x, Integer y, Integer x1, Integer x2, Integer y1, Integer y2) {
+    public void setPosition(Integer x, Integer y) {
     	this.x = x;
     	this.y = y;
-    	this.x1 = x1;
-    	this.x2 = x2;
-    	this.y1 = y1;
-    	this.y2 = y2;
     }
     
 	public Integer getX() {

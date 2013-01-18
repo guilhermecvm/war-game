@@ -1,6 +1,7 @@
 package br.uff.view;
 
 import br.uff.jplay.*;
+import java.io.File;
 
 public class Menu {
 
@@ -15,18 +16,18 @@ public class Menu {
 
     Menu() {
         window = new Window(1024, 768);
-        window.setCursor(window.createCustomCursor("media/mouse.png"));
-        fundo = new GameImage("media/menu/menu.png");
+        window.setCursor(window.createCustomCursor("mouse.png"));
+        fundo = new GameImage("menu.png");
         fundo.draw();
         keyboard = window.getKeyboard();
         mouse = window.getMouse();
-        sprite = new Sprite("media/menu/botao jogar.png");
+        sprite = new Sprite("botao jogar.png");
         sprite.x = 326;
-        musicaFundo = new Sound("media/audio/rap das armas.wav");
+        musicaFundo = new Sound("rap das armas.wav");
         musicaFundo.increaseVolume(6.0206f);
         musicaFundo.play();
         musicaFundo.setRepeat(true);
-        tiro = new Sound("media/audio/gun fire.wav");
+        tiro = new Sound("gun fire.wav");
         loop();
     }
 
@@ -35,7 +36,7 @@ public class Menu {
             window.update();
             fundo.draw();
             if (mouse.isOverArea(326, 242, 689, 311)) {
-                sprite.loadImage("media/menu/botao jogar.png");
+                sprite.loadImage("botao jogar.png");
                 sprite.y = 242;
                 sprite.draw();                
             }
@@ -54,13 +55,13 @@ public class Menu {
             
             if (mouse.isOverArea(326, 352, 689, 441)) {
                 sprite.y = 352;
-                sprite.loadImage("media/menu/botao regras.png");
+                sprite.loadImage("botao regras.png");
                 sprite.draw();
             }
 
             if (mouse.isOverArea(326, 462, 689, 551)) {
                 sprite.y = 462;
-                sprite.loadImage("media/menu/botao creditos.png");
+                sprite.loadImage("botao creditos.png");
                 sprite.draw();
             }
             if (keyboard.keyDown(Keyboard.ESCAPE_KEY)) {
