@@ -11,10 +11,10 @@ public interface Player {
 	
 	public void play();
 	//attackQty = num soldados (sem incluir o que tem que ficar no território)
-	public void attack(Region regionAttack, Region regionDefense, Integer attackQty);
+	public void attack(Favela FavelaAttack, Favela FavelaDefense, Integer attackQty);
 	
-	public ArrayList<Region> getRegions();
-    public ArrayList<Region> getEnemyRegions();
-    public ArrayList<Region[]> getPossibleMoves();
-    public boolean moveSoldiersAttack(Region base, Region destination, Integer soldiersNumber);
+	public ArrayList<Favela> getFavelas();
+    public ArrayList<Favela> getEnemyFavelas();
+    public ArrayList<Favela[]> getPossibleMoves();
+    public boolean moveSoldiersAttack(Favela base, Favela destination, Integer soldiersNumber);
 }

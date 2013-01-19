@@ -22,19 +22,25 @@ public class Data {
 		players.put(2, new PlayerIA("Player IA"));
 	}
 	
-	public static Map <Integer, Region> regions = new HashMap<Integer, Region>();
+	public static Map <Integer, Favela> favelas = new HashMap<Integer, Favela>();
 	static {
-		regions.put(1, new Region("Rio das Pedras", continents.get(1), "rio.png"));
-		regions.put(2, new Region("Gardenia", continents.get(1), "gardenia.png"));
-		regions.put(3, new Region("Cidade de Deus", continents.get(1), "cidadeDeDeus.png"));
+		favelas.put(1, new Favela("Rio das Pedras", continents.get(1), "rio.png"));
+		favelas.put(2, new Favela("Gardenia", continents.get(1), "gardenia.png"));
+		favelas.put(3, new Favela("Cidade de Deus", continents.get(1), "cidadeDeDeus.png"));
 		
 		//Set Position
-		regions.get(1).setPosition(145, 248);
-		regions.get(2).setPosition(110, 302);
+		favelas.get(1).setPosition(145, 248);
+		favelas.get(2).setPosition(110, 302);
+		favelas.get(3).setPosition(45, 270);
 		
 		//Fica em loop? Da problema?
-		regions.get(1).addNeighbour(regions.get(2));
-		regions.get(2).addNeighbour(regions.get(1));
+		favelas.get(1).addNeighbourhood(new Favela[] {favelas.get(2), favelas.get(3)});
+		favelas.get(2).addNeighbourhood(new Favela[] {favelas.get(1), favelas.get(3)});
+		favelas.get(3).addNeighbourhood(new Favela[] {favelas.get(1), favelas.get(2)});
 	}
+
+	public static Favela attacking = null;
+	public static Favela defending = null;
+	
 
 }

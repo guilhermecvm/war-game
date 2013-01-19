@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
     	//Distribui Regiões para os players no inicio do jogo
-    	Helper.distributeRegions();
+    	Helper.distributeFavelas();
     	
         while (true) {
             Scanner in = new Scanner(System.in);

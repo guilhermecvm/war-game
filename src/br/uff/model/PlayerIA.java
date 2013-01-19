@@ -11,19 +11,19 @@ public class PlayerIA extends PlayerAbstract {
 
     @Override
     public void play() {
-        ArrayList<Region[]> moves = this.getPossibleMoves();
+        ArrayList<Favela[]> moves = this.getPossibleMoves();
         if (moves.size() < 1) {
             System.out.println("Este jogador não pode fazer nenhuma jogada.");
         } else {
             Random r = new Random();
-            Region[] move = moves.get(r.nextInt(moves.size()));
-            Region regionAttack = move[0];
-            Region regionDefense = move[1];
-            int attackQty = r.nextInt(regionAttack.getNumArmy()) + 1;
-            System.out.println("Atacando da região " + regionAttack.getName()
-                    + " para a região " + regionDefense.getName() + " com " + attackQty + " soldados.");
+            Favela[] move = moves.get(r.nextInt(moves.size()));
+            Favela favelaAttack = move[0];
+            Favela favelaDefense = move[1];
+            int attackQty = r.nextInt(favelaAttack.getNumArmy()) + 1;
+            System.out.println("Atacando da região " + favelaAttack.getName()
+                    + " para a região " + favelaDefense.getName() + " com " + attackQty + " soldados.");
 
-            this.attack(regionAttack, regionDefense, attackQty);
+            this.attack(favelaAttack, favelaDefense, attackQty);
         }
     }
 }
