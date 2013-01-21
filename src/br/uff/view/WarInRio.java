@@ -23,6 +23,7 @@ public class WarInRio {
 		// Distribui Regiões para os players no inicio do jogo
 		Helper.distributeFavelas();
 		Data.player = Data.players.get(1);
+                Deck deck = new Deck();
 	}
 
 	private void carregarObjetos() {
