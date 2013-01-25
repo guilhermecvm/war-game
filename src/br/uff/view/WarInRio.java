@@ -22,7 +22,10 @@ public class WarInRio {
 	private void startGame() {
 		// Distribui Regiões para os players no inicio do jogo
 		Helper.distributeFavelas();
-		Data.player = Data.players.get(1);
+		Data.player = Data.players.get(1);/*
+                Data.favelas.get(1).setNumArmy(3);
+                Data.favelas.get(2).setNumArmy(3);
+                Data.favelas.get(3).setNumArmy(3);*/
                 Deck deck = new Deck();
 	}
 
@@ -58,49 +61,44 @@ public class WarInRio {
 
 		if (this.isOverArea(185, 254, 275, 484)) {
 			favela = Data.favelas.get(1);
-
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
 		} else if (this.isOverArea(136, 320, 185, 437)) {
 			favela = Data.favelas.get(2);
-
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
 		} else if (this.isOverArea(49, 313, 131, 430)) {
 			favela = Data.favelas.get(3);
-
 			this.drawFavela(favela);
-
 			this.checkMouseClickFavela(favela);
 		} else if (this.isOverArea(36, 221, 196, 310)) {
-
 			sprite.loadImage("media/map/zonaOeste1.png");
 			sprite.x = 36;
-			sprite.y = 216;
+			sprite.y = 209;
 			sprite.draw();
 		} else if (this.isOverArea(122, 161, 184, 217)) {
 
 			sprite.loadImage("media/map/baixada1.png");
 			sprite.x = 110;
-			sprite.y = 161;
+			sprite.y = 155;
 			sprite.draw();
-		} else if (this.isOverArea(43, 111, 125, 207)) {
+		} else if (this.isOverArea(43, 107, 125, 207)) {
 
 			sprite.loadImage("media/map/baixada2.png");
 			sprite.x = 43;
-			sprite.y = 111;
+			sprite.y = 107;
 			sprite.draw();
 		} else if (this.isOverArea(149, 104, 236, 167)) {
 
 			sprite.loadImage("media/map/baixada3.png");
 			sprite.x = 136;
-			sprite.y = 102;
+			sprite.y = 98;
 			sprite.draw();
 		} else if (this.isOverArea(178, 53, 226, 107)) {
 
 			sprite.loadImage("media/map/baixada4.png");
 			sprite.x = 176;
-			sprite.y = 48;
+			sprite.y = 47;
 			sprite.draw();
 		} else if (this.isOverArea(143, 8, 239, 53)) {
 
@@ -114,11 +112,11 @@ public class WarInRio {
 			sprite.x = 140;
 			sprite.y = 42;
 			sprite.draw();
-		} else if (this.isOverArea(110, 138, 42, 112)) {
+		} else if (this.isOverArea(101, 34, 151, 117)) {
 
 			sprite.loadImage("media/map/baixada7.png");
 			sprite.x = 101;
-			sprite.y = 36;
+			sprite.y = 34;
 			sprite.draw();
 		} else if (this.isOverArea(71, 9, 143, 51)) {
 
@@ -132,17 +130,17 @@ public class WarInRio {
 			sprite.x = 46;
 			sprite.y = 34;
 			sprite.draw();
-		} else if (this.isOverArea(240, 19, 285, 58)) {
+		} else if (this.isOverArea(240, 18, 285, 58)) {
 
 			sprite.loadImage("media/map/avenida1.png");
 			sprite.x = 240;
-			sprite.y = 19;
+			sprite.y = 18;
 			sprite.draw();
-		} else if (this.isOverArea(263, 19, 321, 124)) {
+		} else if (this.isOverArea(263, 18, 321, 124)) {
 
 			sprite.loadImage("media/map/avenida2.png");
 			sprite.x = 263;
-			sprite.y = 19;
+			sprite.y = 18;
 			sprite.draw();
 		} else if (this.isOverArea(322, 15, 378, 69)) {
 
@@ -154,25 +152,25 @@ public class WarInRio {
 
 			sprite.loadImage("media/map/avenida4.png");
 			sprite.x = 282;
-			sprite.y = 112;
+			sprite.y = 108;
 			sprite.draw();
 		} else if (this.isOverArea(250, 145, 345, 285)) {
 
 			sprite.loadImage("media/map/aguaSanta.png");
-			sprite.x = 250;
-			sprite.y = 145;
+			sprite.x = 251;
+			sprite.y = 139;
 			sprite.draw();
-		} else if (this.isOverArea(338, 159, 427, 293)) {
+		} else if (this.isOverArea(336, 153, 427, 293)) {
 
 			sprite.loadImage("media/map/avenida6.png");
 			sprite.x = 338;
-			sprite.y = 159;
+			sprite.y = 153;
 			sprite.draw();
 		} else if (this.isOverArea(349, 51, 413, 159)) {
 
 			sprite.loadImage("media/map/jacarezinho.png");
 			sprite.x = 349;
-			sprite.y = 51;
+			sprite.y = 49;
 			sprite.draw();
 		} else if (isOverArea(407, 89, 445, 164)
 				|| isOverArea(420, 148, 501, 171)) {
@@ -190,7 +188,7 @@ public class WarInRio {
 		} else if (isOverArea(396, 158, 501, 264)) {
 
 			sprite.loadImage("media/map/morro do macaco.png");
-			sprite.x = 397;
+			sprite.x = 400;
 			sprite.y = 159;
 			sprite.draw();
 		} else if (isOverArea(453, 79, 490, 125)) {
@@ -217,17 +215,22 @@ public class WarInRio {
 			sprite.x = 430;
 			sprite.y = 71;
 			sprite.draw();
-		} else if (isOverArea(533, 176, 570, 221)) {
+		} else if (isOverArea(535, 170, 572, 226)) {
 
 			sprite.loadImage("media/map/saoCarlos.png");
 			sprite.x = 533;
 			sprite.y = 164;
 			sprite.draw();
-		} else if (isOverArea(489, 120, 567, 121)) {
-
+		}else if(isOverArea(522, 76, 595, 133)){
+                        sprite.loadImage("media/map/novaEsperanca.png");
+                        sprite.x = 522;
+                        sprite.y= 76;
+                        sprite.draw();
+                }
+                else if (isOverArea(490, 121, 562, 223)) {
 			sprite.loadImage("media/map/mangueira.png");
-			sprite.x = 489;
-			sprite.y = 120;
+			sprite.x = 490;
+			sprite.y = 121;
 			sprite.draw();
 		} else if (isOverArea(475, 215, 577, 292)) {
 
