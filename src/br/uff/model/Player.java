@@ -21,7 +21,7 @@ public interface Player {
     public void tradeCards(ArrayList<Card> cards);
 
     public void play();
-    //attackQty = num soldados (sem incluir o que tem que ficar no território)
+    //attackQty = num membros (sem incluir o que tem que ficar na favela)
 
     public void attack(Favela FavelaAttack, Favela FavelaDefense, Integer attackQty);
 

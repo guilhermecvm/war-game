@@ -85,11 +85,11 @@ public class PlayerUser extends PlayerAbstract {
         System.out.println("Defesa # Num Army:" + favelaDefense.getNumArmy());
         System.out.println();
 
-        System.out.println("Quantos soldados quer usar?");
+        System.out.println("Quantos membros quer usar?");
         int attackQty = in.nextInt();
         //Confere se tem army suficiente (qtd selecionada < total na regiao e total na regiao > 1)
         if (!(attackQty < favelaAttack.getNumArmy() && favelaAttack.getNumArmy() > 1)) {
-            System.out.println("Você não tem a quantidade de exercito escolhida ou não tem o mínimo para atacar (1)");
+            System.out.println("Você não tem a quantidade de membros escolhida ou não tem o mínimo para atacar (1)");
             return;
         }
 
@@ -97,12 +97,12 @@ public class PlayerUser extends PlayerAbstract {
 
         //Verifica se a região sob ataque ainda tem exército
         if (favelaDefense.getNumArmy() == 0) {
-            System.out.println("Ataque tomou o terrório, escolha o número de soldados para passar");
+            System.out.println("Ataque tomou o terrório, escolha o número de membros para passar");
             Boolean armyMoved = false;
             while (!armyMoved) {
                 armyMoved = this.moveSoldiersAttack(favelaAttack, favelaDefense, in.nextInt());
             }
-            Helper.takeFavela(this, favelaDefense);
+            favelaDefense.setPlayer(this);
         }
         this.buyCard();
 

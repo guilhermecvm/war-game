@@ -41,17 +41,17 @@ public class PlayerIA extends PlayerAbstract {
             Favela favelaDefense = move[1];
             int attackQty = r.nextInt(favelaAttack.getNumArmy() - 1) + 1;
             System.out.println("Atacando da região " + favelaAttack.getName()
-                    + " para a região " + favelaDefense.getName() + " com " + attackQty + " soldados.");
+                    + " para a região " + favelaDefense.getName() + " com " + attackQty + " membros.");
 
             this.attack(favelaAttack, favelaDefense, attackQty);
 
             if (favelaDefense.getNumArmy() == 0) {
-                System.out.println("Ataque tomou o terrório, escolha o número de soldados para passar");
+                System.out.println("Ataque tomou o terrório, escolha o número de membros para passar");
                 Boolean armyMoved = false;
                 while (!armyMoved) {
                     armyMoved = this.moveSoldiersAttack(favelaAttack, favelaDefense, r.nextInt(favelaAttack.getNumArmy() - 1) + 1);
                 }
-                Helper.takeFavela(this, favelaDefense);
+                favelaDefense.setPlayer(this);
             }
         }
         this.buyCard();

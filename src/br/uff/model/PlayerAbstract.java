@@ -1,9 +1,10 @@
 package br.uff.model;
 
-import br.uff.controller.Main;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import br.uff.controller.Main;
 
 public abstract class PlayerAbstract implements Player {
 
@@ -144,7 +145,7 @@ public abstract class PlayerAbstract implements Player {
     public ArrayList<Favela[]> getPossibleMoves() {
         // Retorna todas as minhas possíveis jogadas
         // Uma jogada é possível desde que uma região minha tenha mais de 1
-        // soldado
+        // membro
         // e que a região vizinha seja de um inimigo
         ArrayList<Favela[]> moves = new ArrayList<Favela[]>();
         ArrayList<Favela> myFavelas = this.getFavelas();
@@ -175,7 +176,7 @@ public abstract class PlayerAbstract implements Player {
 
         // Regras
         if (!Helper.hasArmy(favelaAttack, attackQty)) {
-            throw new Error("Você não tem a quantidade de exercito escolhida ou não tem o mínimo para atacar (1)");
+            throw new Error("Você não tem a quantidade de membros escolhida ou não tem o mínimo para atacar (1)");
         }
 
         // Máximo de 3 para ataque e defesa
@@ -204,22 +205,23 @@ public abstract class PlayerAbstract implements Player {
 
         // Mostra Resultado dos Dados do Ataque
         System.out.println("Ataque");
-        for (int i = 0; i < attackQty - 1; i++) {
+        for (int i = 0; i < attackQty; i++) {
             System.out.print(diceAttack.get(i) + ",");
+        	Data.dicesAttack.get(i+1).setValue(diceAttack.get(i));
         }
-        System.out.print(diceAttack.get(attackQty - 1));
 
         System.out.println();
         // Mostra Resultado dos Dados da Defesa
         System.out.println("Defesa");
-        for (int i = 0; i < defenseQty - 1; i++) {
+        for (int i = 0; i < defenseQty; i++) {
             System.out.print(diceDefense.get(i) + ",");
+        	Data.dicesDefense.get(i+1).setValue(diceDefense.get(i));
         }
-        System.out.print(diceDefense.get(defenseQty - 1));
+
         System.out.println();
         System.out.println();
 
-        // Número de dados para ser comparado = menor número de exercito
+        // Número de dados para ser comparado = menor número de membros
         Integer nDados = (attackQty > defenseQty) ? defenseQty : attackQty;
 
         // Compara Dados (maior com maior)
@@ -235,16 +237,18 @@ public abstract class PlayerAbstract implements Player {
             }
         }
     }
-
+    
+    
     @Override
     public boolean moveSoldiersAttack(Favela base, Favela destination, Integer qtyArmy) {
         if (Helper.hasArmy(base, qtyArmy)) {
             base.setNumArmy(base.getNumArmy() - qtyArmy);
             destination.setNumArmy(destination.getNumArmy() + qtyArmy);
-            System.out.println("Soldados enviados a nova regiao com sucesso.");
+            destination.setPlayer(this);
+            System.out.println("Membros enviados a nova favela com sucesso.");
             return true;
         }
-        System.out.println("Número de soldados inválido. Deve ter pelo menos 1 soldado tomando conta da base antiga! Digite novamente:");
+        System.out.println("Número de membros inválido. Deve ter pelo menos 1 membro tomando conta da base antiga! Digite novamente:");
         System.out.println("Origem: " + base.getName() + " => " + base.getNumArmy() + " membros.");
         
         return false;

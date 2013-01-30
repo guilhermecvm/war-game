@@ -43,10 +43,6 @@ public class Helper {
             return false;
         }
     }
-    
-    public static void takeFavela(Player player, Favela favela){
-        favela.setPlayer(player);
-    }
 
     public static int numberOfBonusArmy() {
         int current_trade = Main.get_card_trades() + 1;

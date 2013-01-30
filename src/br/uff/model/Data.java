@@ -6,7 +6,7 @@ import java.util.Map;
 public class Data {
 	public static Player player;
 	
-        public static Favela attacking = null;
+    public static Favela attacking = null;
 	public static Favela defending = null;
         
 	public static Map <Integer, Continent> continents = new HashMap<Integer, Continent>();
@@ -53,28 +53,28 @@ public class Data {
 		favelas.put(21, new Favela("Zona Norte 2", continents.get(4), "zonaNorte2.png"));
 		favelas.put(22, new Favela("Zona Norte 1", continents.get(4), "zonaNorte1.png"));
 		favelas.put(23, new Favela("Morro do Macaco", continents.get(4), "morro do macaco.png"));
-         	favelas.put(24, new Favela("Zona Norte 4", continents.get(4), "zonaNorte4.png"));
-         	favelas.put(25, new Favela("Zona Norte 5", continents.get(4), "zonaNorte5.png"));
-         	favelas.put(26, new Favela("Nova Holanda", continents.get(4), "novaHolanda.png"));
-         	favelas.put(27, new Favela("Zona Norte 3", continents.get(4), "zonaNorte3.png"));
-         	favelas.put(28, new Favela("Sao Carlos", continents.get(4), "saoCarlos.png"));
-         	favelas.put(29, new Favela("Nova Esperanca", continents.get(4), "novaEsperanca.png"));
-         	favelas.put(30, new Favela("Mangueira", continents.get(4), "mangueira.png"));
-         	favelas.put(31, new Favela("Salgueiro", continents.get(4), "salgueiro.png"));
-                
-         	favelas.put(32, new Favela("Central 1", continents.get(5), "central1.png"));
-         	favelas.put(33, new Favela("Providencia", continents.get(5), "providencia.png"));
-         	favelas.put(34, new Favela("Coroa", continents.get(5), "coroa.png"));
-         	favelas.put(35, new Favela("Central 2", continents.get(5), "central2.png"));
-                
-         	favelas.put(36, new Favela("Pavao Pavaozinho", continents.get(6), "pavaoPavaozinho.png"));
-         	favelas.put(37, new Favela("Chapeu Mangueira", continents.get(6), "chapeuMangueira.png"));
-         	favelas.put(38, new Favela("Cantagalo", continents.get(6), "cantagalo.png"));
-         	favelas.put(39, new Favela("Dona Marta", continents.get(6), "donaMarta.png"));
-         	favelas.put(40, new Favela("Vidigal", continents.get(6), "vidigal.png"));
-         	favelas.put(41, new Favela("Rocinha", continents.get(6), "rocinha.png"));
+     	favelas.put(24, new Favela("Zona Norte 4", continents.get(4), "zonaNorte4.png"));
+     	favelas.put(25, new Favela("Zona Norte 5", continents.get(4), "zonaNorte5.png"));
+     	favelas.put(26, new Favela("Nova Holanda", continents.get(4), "novaHolanda.png"));
+     	favelas.put(27, new Favela("Zona Norte 3", continents.get(4), "zonaNorte3.png"));
+     	favelas.put(28, new Favela("Sao Carlos", continents.get(4), "saoCarlos.png"));
+     	favelas.put(29, new Favela("Nova Esperanca", continents.get(4), "novaEsperanca.png"));
+     	favelas.put(30, new Favela("Mangueira", continents.get(4), "mangueira.png"));
+     	favelas.put(31, new Favela("Salgueiro", continents.get(4), "salgueiro.png"));
+            
+     	favelas.put(32, new Favela("Central 1", continents.get(5), "central1.png"));
+     	favelas.put(33, new Favela("Providencia", continents.get(5), "providencia.png"));
+     	favelas.put(34, new Favela("Coroa", continents.get(5), "coroa.png"));
+     	favelas.put(35, new Favela("Central 2", continents.get(5), "central2.png"));
+            
+     	favelas.put(36, new Favela("Pavao Pavaozinho", continents.get(6), "pavaoPavaozinho.png"));
+     	favelas.put(37, new Favela("Chapeu Mangueira", continents.get(6), "chapeuMangueira.png"));
+     	favelas.put(38, new Favela("Cantagalo", continents.get(6), "cantagalo.png"));
+     	favelas.put(39, new Favela("Dona Marta", continents.get(6), "donaMarta.png"));
+     	favelas.put(40, new Favela("Vidigal", continents.get(6), "vidigal.png"));
+     	favelas.put(41, new Favela("Rocinha", continents.get(6), "rocinha.png"));
 
-		
+	
 		//Set Position
 		favelas.get(1).setPosition(146, 236);
 		favelas.get(2).setPosition(113, 292);
@@ -119,10 +119,23 @@ public class Data {
 		favelas.get(41).setPosition(327, 392);
 		
 		//Fica em loop? Da problema?
-		favelas.get(1).addNeighbourhood(new Favela[] {favelas.get(2), favelas.get(3)});
+		favelas.get(1).addNeighbourhood(new Favela[] {favelas.get(2), favelas.get(3),favelas.get(4) });
 		favelas.get(2).addNeighbourhood(new Favela[] {favelas.get(1), favelas.get(3)});
-		favelas.get(3).addNeighbourhood(new Favela[] {favelas.get(1), favelas.get(2)});
+		favelas.get(3).addNeighbourhood(new Favela[] {favelas.get(1), favelas.get(2), favelas.get(4)});
+		favelas.get(4).addNeighbourhood(new Favela[] {favelas.get(1), favelas.get(3), favelas.get(5)});
 	}
 	
-
+	public static Map <Integer, Dice> dicesAttack = new HashMap<Integer, Dice>();
+	static {
+		dicesAttack.put(1, new Dice("", 10, 0, 0));
+		dicesAttack.put(2, new Dice("", 140, 0, 0));
+		dicesAttack.put(3, new Dice("", 270, 0, 0));
+	}
+	
+	public static Map <Integer, Dice> dicesDefense = new HashMap<Integer, Dice>();
+	static {
+		dicesDefense.put(1, new Dice("", 400, 0, 0));
+		dicesDefense.put(2, new Dice("", 530, 0, 0));
+		dicesDefense.put(3, new Dice("", 660, 0, 0));
+	}
 }
