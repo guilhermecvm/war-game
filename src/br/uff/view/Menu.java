@@ -1,6 +1,7 @@
 package br.uff.view;
 
 import br.uff.jplay.*;
+import java.io.File;
 
 public class Menu {
 
@@ -48,7 +49,7 @@ public class Menu {
                     }
                     tiro.play();
                     window.dispose();
-                    new WarInRio();
+                    new Game();
 
                 }
             

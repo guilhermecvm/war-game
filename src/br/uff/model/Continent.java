@@ -6,12 +6,12 @@ public class Continent {
 	
 	private String name;
 	private Integer bonus;
-	private ArrayList<Region> regions;
+	private ArrayList<Favela> favelas;
 	
 	public Continent(String name, Integer bonus) {
 		this.name = name;
 		this.bonus = bonus;
-		this.regions = new ArrayList<Region>();
+		this.favelas = new ArrayList<Favela>();
 	}
 
 	public String getName() {
@@ -30,11 +30,11 @@ public class Continent {
 		this.bonus = bonus;
 	}
 	
-	public ArrayList<Region> getRegions() {
-        return regions;
+	public ArrayList<Favela> getFavelas() {
+        return favelas;
     }
     
-    public void addRegion(Region reg) {
-        this.regions.add(reg);
+    public void addFavela(Favela reg) {
+        this.favelas.add(reg);
     }
 }

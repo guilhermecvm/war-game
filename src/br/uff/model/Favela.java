@@ -3,23 +3,23 @@ package br.uff.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Region {
+public class Favela {
 
     private String name;
     private Continent continent;
     private Player player;
     private Integer numArmy;
-    private ArrayList<Region> neighbourhood;
+    private ArrayList<Favela> neighbourhood;
     private String img;
     private Integer x, y, x1, x2, y1, y2;
-
-    public Region(String name, Continent continent, Player player, String img) {
+    
+    public Favela(String name, Continent continent, String img) {
         this.name = name;
         this.continent = continent;
-        this.player = player;
+        this.player = null;
         this.numArmy = 1;
-        this.neighbourhood = new ArrayList<Region>();
-        continent.addRegion(this);
+        this.neighbourhood = new ArrayList<Favela>();
+        continent.addFavela(this);
         this.img = img;
     }
 
@@ -51,30 +51,28 @@ public class Region {
         this.numArmy = numArmy;
     }
 
-    public void addNeighbour(Region region) {
-        this.neighbourhood.add(region);
+    public void addNeighbourhood(Favela[] favelas) {
+    	for (Favela favela : favelas) {
+    		this.neighbourhood.add(favela);
+    	}
     }
 
-    public boolean isNeighbour(Region region) {
-        for (Region neighbour : this.neighbourhood) {
-            if (neighbour == region) {
+    public boolean isNeighbour(Favela favela) {
+        for (Favela neighbour : this.neighbourhood) {
+            if (neighbour == favela) {
                 return true;
             }
         }
         return false;
     }
     
-    public List<Region> getNeighbourhood() {
+    public List<Favela> getNeighbourhood() {
         return neighbourhood;
     }
     
-    public void setPosition(Integer x, Integer y, Integer x1, Integer x2, Integer y1, Integer y2) {
+    public void setPosition(Integer x, Integer y) {
     	this.x = x;
     	this.y = y;
-    	this.x1 = x1;
-    	this.x2 = x2;
-    	this.y1 = y1;
-    	this.y2 = y2;
     }
     
 	public Integer getX() {
