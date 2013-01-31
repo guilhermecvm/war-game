@@ -17,7 +17,7 @@ public class Favela {
         this.name = name;
         this.continent = continent;
         this.player = null;
-        this.numArmy = 4;	//TODO deve ser 0
+        this.numArmy = 1;
         this.neighbourhood = new ArrayList<Favela>();
         continent.addFavela(this);
         this.img = img;

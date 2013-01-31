@@ -127,15 +127,15 @@ public class Data {
 	
 	public static Map <Integer, Dice> dicesAttack = new HashMap<Integer, Dice>();
 	static {
-		dicesAttack.put(1, new Dice("", 10, 0, 0));
-		dicesAttack.put(2, new Dice("", 140, 0, 0));
-		dicesAttack.put(3, new Dice("", 270, 0, 0));
+		dicesAttack.put(1, new Dice("", 876, 15, 0));
+		dicesAttack.put(2, new Dice("", 1028, 15, 0));
+		dicesAttack.put(3, new Dice("", 1186, 15, 0));
 	}
 	
 	public static Map <Integer, Dice> dicesDefense = new HashMap<Integer, Dice>();
 	static {
-		dicesDefense.put(1, new Dice("", 400, 0, 0));
-		dicesDefense.put(2, new Dice("", 530, 0, 0));
-		dicesDefense.put(3, new Dice("", 660, 0, 0));
+		dicesDefense.put(1, new Dice("", 876, 155, 0));
+		dicesDefense.put(2, new Dice("", 1028, 155, 0));
+		dicesDefense.put(3, new Dice("", 1186, 155, 0));
 	}
 }

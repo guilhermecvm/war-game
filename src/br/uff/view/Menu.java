@@ -49,7 +49,7 @@ public class Menu {
                     }
                     tiro.play();
                     window.dispose();
-                    new WarInRio();
+                    new Game();
 
                 }
             
