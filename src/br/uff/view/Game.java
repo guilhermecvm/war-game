@@ -60,7 +60,7 @@ public class Game {
 
 	private void loadObjects() {
 		// A windows SEMPRE deve ser a primeira a ser CARREGADA
-		window = new Window(1344, 756);
+		window = new Window(1366, 768);
 		window.setCursor(window.createCustomCursor("media/mouse.png"));
 		keyboard = window.getKeyboard();
 		mouse = window.getMouse();
