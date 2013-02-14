@@ -8,6 +8,7 @@ public class Data {
 	
     public static Favela attacking = null;
 	public static Favela defending = null;
+	public static Status status = null;
         
 	public static Map <Integer, Continent> continents = new HashMap<Integer, Continent>();
 	static {

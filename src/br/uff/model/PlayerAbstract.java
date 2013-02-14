@@ -83,10 +83,11 @@ public abstract class PlayerAbstract implements Player {
         this.armyAvaiable = armyAvaiable;
     }
 
-    public void updateArmy() {
+    @Override
+    public void receiveRoundArmy() {
         int numberOfFavelas = this.getFavelas().size();
 
-        // Aumenta army para distribuir de acordo com regiões dominadas
+        // Aumenta army para distribuir de acordo com favelas dominadas
         if (numberOfFavelas <= 6) {
             this.setArmyAvaiable(this.getArmyAvaiable() + 3);
         } else {
@@ -101,8 +102,9 @@ public abstract class PlayerAbstract implements Player {
         }
     }
 
+    @Override
     public boolean sendArmyTo(Favela destination, int numArmy) {
-        if (this.getFavelas().contains(destination)) {
+        if (this.getFavelas().contains(destination) && this.getArmyAvaiable() >= numArmy) {
             destination.setNumArmy(destination.getNumArmy() + numArmy);
             this.setArmyAvaiable(this.getArmyAvaiable() - numArmy);
             return true;

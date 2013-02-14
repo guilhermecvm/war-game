@@ -23,6 +23,7 @@ import br.uff.model.Deck;
 import br.uff.model.Dice;
 import br.uff.model.Favela;
 import br.uff.model.Helper;
+import br.uff.model.Status;
 
 public class Game {
 
@@ -45,14 +46,18 @@ public class Game {
 	private void startGame() {
 		// Distribui Favelas para os players no inicio do jogo
 		Helper.distributeFavelas();
+		Data.status = Status.DISTRIBUTING;
+		
 		Data.player = Data.players.get(1);
+		Data.player.receiveRoundArmy();
+		
 		
 		//TODO distribuir membros para os players alocarem nas favelas
 		
 		// Só para testar
-		Data.favelas.get(1).setNumArmy(5);
-		Data.favelas.get(2).setNumArmy(3);
-		Data.favelas.get(3).setNumArmy(3);
+		Data.favelas.get(1).setNumArmy(2);
+		Data.favelas.get(2).setNumArmy(2);
+		Data.favelas.get(3).setNumArmy(2);
 		Data.favelas.get(4).setNumArmy(2);
 
 		Deck deck = new Deck();
@@ -270,11 +275,24 @@ public class Game {
 			sprite.x = 563;
 			sprite.y = 583;
 			sprite.draw();
+
+			if (mouse.isLeftButtonPressed()) {
+				Data.status = Status.ATTACKING;
+			}
 		} else if (mouse.isOverArea(563, 669, 745, 728)) {
 			sprite.loadImage("media/menu/passarJogada.png");
 			sprite.x = 563;
 			sprite.y = 669;
 			sprite.draw();
+
+			if (mouse.isLeftButtonPressed()) {
+//				Data.player = Helper.nextPlayer();
+				Data.player.receiveRoundArmy();
+				Data.status = Status.DISTRIBUTING;
+				Data.attacking = null;
+				Data.defending = null;
+				this.eraseDice();
+			}
 		} else {
 			if (mouse.isLeftButtonPressed()) {
 				Data.attacking = null;
@@ -288,37 +306,52 @@ public class Game {
 
 	private void checkMouseClickFavela(Favela favela) {
 		if (mouse.isLeftButtonPressed()) {
-			if (Data.attacking == null) {
-				//Zera o valor dos dados pois vai atacar novamente
-				this.eraseDice();
-				
-				// Se favela clicada pertence ao jogador atual
+			if (Data.status == Status.DISTRIBUTING) {
 				if (favela.getPlayer() == Data.player) {
-					Data.attacking = favela;
-					System.out.println("Atacando com:" + Data.attacking.getName());
-				} else {
-					JOptionPane.showMessageDialog(window, "Você não é o dono da favela!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
-					Data.attacking = null;
-					// System.out.println("Você não é o dono da favela");
+					//Clicou na favela, abre uma dialog perguntando quantos membros vai alocar na favela.
+					String numArmy = JOptionPane.showInputDialog(window, "Quantos membros deseja alocar nessa favela?", "Alocando Membros", JOptionPane.INFORMATION_MESSAGE);
+					
+					if (!Data.player.sendArmyTo(favela, Integer.parseInt(numArmy))) {
+						JOptionPane.showMessageDialog(window, "Você não tem essa quantidade de membros disponível.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
-			} else {
-				// Se a região faz divisa e favela pertence a inimigo
-				if (favela.isNeighbour(Data.attacking) && favela.getPlayer() != Data.player) {
-					if (Data.attacking.getNumArmy() > 1) {
-						Data.defending = favela;
-						System.out.println("Defendendo com:" + Data.defending.getName());
-						
-						//Painel
-						this.showAttackPanel();
+			}
+			else if (Data.status == Status.ATTACKING) {
+				if (Data.attacking == null) {
+					//Zera o valor dos dados pois vai atacar novamente
+					this.eraseDice();
+					
+					// Se favela clicada pertence ao jogador atual
+					if (favela.getPlayer() == Data.player) {
+						Data.attacking = favela;
+						System.out.println("Atacando com:" + Data.attacking.getName());
 					} else {
-						JOptionPane.showMessageDialog(window, "Você não possui membros suficientes para atacar.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(window, "Você não é o dono da favela!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
 						Data.attacking = null;
-						Data.defending = null;
+						// System.out.println("Você não é o dono da favela");
 					}
 				} else {
-					JOptionPane.showMessageDialog(window, "Você não pode atacar essa favela, pois ela faz não faz divisa, ou percente a você.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
-					Data.defending = null;
+					// Se a região faz divisa e favela pertence a inimigo
+					if (favela.isNeighbour(Data.attacking) && favela.getPlayer() != Data.player) {
+						if (Data.attacking.getNumArmy() > 1) {
+							Data.defending = favela;
+							System.out.println("Defendendo com:" + Data.defending.getName());
+							
+							//Painel
+							this.showAttackPanel();
+						} else {
+							JOptionPane.showMessageDialog(window, "Você não possui membros suficientes para atacar.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+							Data.attacking = null;
+							Data.defending = null;
+						}
+					} else {
+						JOptionPane.showMessageDialog(window, "Você não pode atacar essa favela, pois ela faz não faz divisa, ou percente a você.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+						Data.defending = null;
+					}
 				}
+			}
+			else if (Data.status == Status.MOVING) {
+				
 			}
 		}
 	}

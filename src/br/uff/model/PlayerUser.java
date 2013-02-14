@@ -45,7 +45,7 @@ public class PlayerUser extends PlayerAbstract {
 
         }
 
-        this.updateArmy();
+        this.receiveRoundArmy();
 
         while (this.getArmyAvaiable() > 0) {
             System.out.println("Você tem " + this.getArmyAvaiable() + " reforços.");

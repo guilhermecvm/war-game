@@ -11,6 +11,10 @@ public interface Player {
     public int getArmyAvaiable();
 
     public void setArmyAvaiable(int armyAvaiable);
+    
+    public void receiveRoundArmy();
+
+    public boolean sendArmyTo(Favela destination, int numArmy);
 
     public ArrayList<Card> getCards();
 

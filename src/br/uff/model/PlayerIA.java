@@ -11,7 +11,7 @@ public class PlayerIA extends PlayerAbstract {
 
     @Override
     public void play() {
-        this.updateArmy();
+        this.receiveRoundArmy();
 
         while (this.getArmyAvaiable() > 0) {
             System.out.println("Você tem " + this.getArmyAvaiable() + " reforços.");
