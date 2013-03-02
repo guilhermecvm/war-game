@@ -10,7 +10,9 @@ package br.uff.model;
  */
 public class Card {
 
-    int type;
+    private int type;
+    private Favela favela;
+    private String img;
     public static final int TYPE_TRIANGLE = 1;
     public static final int TYPE_CIRCLE = 2;
     public static final int TYPE_SQUARE = 3;
@@ -22,13 +24,15 @@ public class Card {
     public static final int FIFTH_TRADE_BONUS = 12;
     public static final int SIXTH_TRADE_BONUS = 15;
 
-    public Card(int type) {
+    public Card(int type, Favela favela, String img) {
         this.type = type;
+        this.favela = favela;
+        this.img = img;
     }
 
     @Override
     public String toString() {
-        String resp = "";
+        String resp = this.favela.getName() + " - tipo: ";
         switch (this.type) {
             case TYPE_TRIANGLE: {
                 resp = "Triângulo";
@@ -44,5 +48,9 @@ public class Card {
             }
         }
         return resp;
+    }
+
+    public int get_type() {
+        return this.type;
     }
 }

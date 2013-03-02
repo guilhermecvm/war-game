@@ -60,7 +60,7 @@ public class Game {
 		Data.favelas.get(3).setNumArmy(2);
 		Data.favelas.get(4).setNumArmy(2);
 
-		Deck deck = new Deck();
+		Deck deck = new Deck(Data.deck);
 	}
 
 	private void loadObjects() {

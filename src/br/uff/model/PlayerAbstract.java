@@ -37,7 +37,7 @@ public abstract class PlayerAbstract implements Player {
             int type_square_count = 0;
             int type_triangle_count = 0;
             for (Card card : cards) {
-                switch (card.type) {
+                switch (card.get_type()) {
                     case Card.TYPE_CIRCLE: {
                         type_circle_count++;
                         break;
