@@ -7,9 +7,11 @@ import java.util.List;
 import br.uff.controller.Main;
 
 public abstract class PlayerAbstract implements Player {
-
+	
+	private int id;
     private String name;
     private int armyAvaiable = 0;
+    private String img;
     private ArrayList<Card> cards = new ArrayList<Card>();
 
     @Override
@@ -64,6 +66,16 @@ public abstract class PlayerAbstract implements Player {
     }
 
     @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
     public String getName() {
         return name;
     }
@@ -82,6 +94,16 @@ public abstract class PlayerAbstract implements Player {
     public void setArmyAvaiable(int armyAvaiable) {
         this.armyAvaiable = armyAvaiable;
     }
+    
+    @Override
+    public String getImg() {
+		return img;
+	}
+    
+    @Override
+	public void setImg(String img) {
+		this.img = img;
+	}
 
     @Override
     public void receiveRoundArmy() {

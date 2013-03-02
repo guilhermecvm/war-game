@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 public class PlayerUser extends PlayerAbstract {
 
-    public PlayerUser(String name) {
+    public PlayerUser(String name, String img) {
+    	this.setId(Data.players.size()+1);
         this.setName(name);
+        this.setImg(img);
     }
 
     @Override

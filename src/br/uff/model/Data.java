@@ -23,8 +23,8 @@ public class Data {
 
     public static Map<Integer, Player> players = new HashMap<Integer, Player>();
     static {
-        players.put(1, new PlayerUser("Player 1"));
-        players.put(2, new PlayerIA("Player IA"));
+        players.put(1, new PlayerUser("Player 1", "blueArmy.png"));
+        players.put(2, new PlayerIA("Player IA", "greenArmy.png"));
     }
 
     public static Map<Integer, Favela> favelas = new HashMap<Integer, Favela>();
@@ -33,10 +33,10 @@ public class Data {
         favelas.put(2, new Favela("Gardenia", continents.get(1), "gardenia.png"));
         favelas.put(3, new Favela("Cidade de Deus", continents.get(1), "cidadeDeDeus.png"));
         favelas.put(4, new Favela("Nova Aurora", continents.get(1), "zonaOeste1.png"));
-        favelas.get(1).setPosition(167, 361);
-        favelas.get(2).setPosition(119, 422);
-        favelas.get(3).setPosition(32, 376);
-        favelas.get(4).setPosition(20, 314);
+        favelas.get(1).setPosition(167, 361, 257, 488);
+        favelas.get(2).setPosition(119, 422, 164, 471);
+        favelas.get(3).setPosition(32, 376, 98, 480);
+        favelas.get(4).setPosition(20, 314, 65, 374);
         favelas.put(5, new Favela("Covanca", continents.get(2), "baixada1.png"));
         favelas.put(6, new Favela("Jardim Sulacap", continents.get(2), "baixada2.png"));
         favelas.put(7, new Favela("Morro do Fubá", continents.get(2), "baixada3.png"));
@@ -46,15 +46,15 @@ public class Data {
         favelas.put(11, new Favela("Bento Ribeiro", continents.get(2), "baixada7.png"));
         favelas.put(12, new Favela("Honório Gurgel", continents.get(2), "baixada8.png"));
         favelas.put(13, new Favela("Vila Eugenia", continents.get(2), "baixada9.png"));
-        favelas.get(5).setPosition(113, 242);
-        favelas.get(6).setPosition(29, 181);
-        favelas.get(7).setPosition(150, 170);
-        favelas.get(8).setPosition(202, 102);
-        favelas.get(9).setPosition(159, 52);
-        favelas.get(10).setPosition(155, 95);
-        favelas.get(11).setPosition(105, 87);
-        favelas.get(12).setPosition(66, 53);
-        favelas.get(13).setPosition(33, 85);
+        favelas.get(5).setPosition(113, 242, 0, 0);
+        favelas.get(6).setPosition(29, 181, 0, 0);
+        favelas.get(7).setPosition(150, 170, 0, 0);
+        favelas.get(8).setPosition(202, 102, 0, 0);
+        favelas.get(9).setPosition(159, 52, 0, 0);
+        favelas.get(10).setPosition(155, 95, 0, 0);
+        favelas.get(11).setPosition(105, 87, 0, 0);
+        favelas.get(12).setPosition(66, 53, 0, 0);
+        favelas.get(13).setPosition(33, 85, 0, 0);
         favelas.put(14, new Favela("Morro do Juramento", continents.get(3), "avenida1.png"));
         favelas.put(15, new Favela("Tomás Coelho", continents.get(3), "avenida2.png"));
         favelas.put(16, new Favela("Vila Cruzeiro", continents.get(3), "vilaCruzeiro.png"));
@@ -63,13 +63,13 @@ public class Data {
         favelas.put(19, new Favela("Borda do Mato", continents.get(3), "avenida6.png"));
         favelas.put(20, new Favela("Jacarezinho", continents.get(3), "jacarezinho.png"));
 
-        favelas.get(14).setPosition(285, 66);
-        favelas.get(15).setPosition(315, 66);
-        favelas.get(16).setPosition(392, 61);
-        favelas.get(17).setPosition(340, 183);
-        favelas.get(18).setPosition(298, 221);
-        favelas.get(19).setPosition(413, 238);
-        favelas.get(20).setPosition(427, 106);
+        favelas.get(14).setPosition(285, 66, 0, 0);
+        favelas.get(15).setPosition(315, 66, 0, 0);
+        favelas.get(16).setPosition(392, 61, 417, 82);
+        favelas.get(17).setPosition(340, 183, 0, 0);
+        favelas.get(18).setPosition(298, 221, 364, 321);
+        favelas.get(19).setPosition(413, 238, 0, 0);
+        favelas.get(20).setPosition(427, 106, 482, 179);
         favelas.put(21, new Favela("Higienópolis", continents.get(4), "zonaNorte2.png"));
         favelas.put(22, new Favela("Morro do Borel", continents.get(4), "zonaNorte1.png"));
         favelas.put(23, new Favela("Morro do Macaco", continents.get(4), "morro do macaco.png"));
@@ -82,26 +82,26 @@ public class Data {
         favelas.put(30, new Favela("Mangueira", continents.get(4), "mangueira.png"));
         favelas.put(31, new Favela("Salgueiro", continents.get(4), "salgueiro.png"));
 
-        favelas.get(21).setPosition(503, 158);
-        favelas.get(22).setPosition(482, 275);
-	favelas.get(23).setPosition(495, 248);
-        favelas.get(24).setPosition(561, 132);
-        favelas.get(25).setPosition(528, 72);
-        favelas.get(26).setPosition(595, 87);
-        favelas.get(27).setPosition(531, 134);
-        favelas.get(28).setPosition(665, 256);
-        favelas.get(29).setPosition(651, 141);
-        favelas.get(30).setPosition(609, 199);
-        favelas.get(31).setPosition(591, 322);
+        favelas.get(21).setPosition(503, 158, 0, 0);
+        favelas.get(22).setPosition(482, 275, 0, 0);
+        favelas.get(23).setPosition(495, 248, 554, 277);
+        favelas.get(24).setPosition(561, 132, 0, 0);
+        favelas.get(25).setPosition(528, 72, 0, 0);
+        favelas.get(26).setPosition(595, 87, 621, 151);
+        favelas.get(27).setPosition(531, 134, 0, 0);
+        favelas.get(28).setPosition(665, 256, 685, 296);
+        favelas.get(29).setPosition(651, 141, 700, 176);
+        favelas.get(30).setPosition(609, 199, 633, 290);
+        favelas.get(31).setPosition(591, 322, 660, 358);
         favelas.put(32, new Favela("Mineira", continents.get(5), "central1.png"));
         favelas.put(33, new Favela("Providencia", continents.get(5), "providencia.png"));
         favelas.put(34, new Favela("Morro da Coroa", continents.get(5), "coroa.png"));
         favelas.put(35, new Favela("Baronesa", continents.get(5), "central2.png"));
 
-        favelas.get(32).setPosition(704, 257);
-        favelas.get(33).setPosition(735, 242);
-        favelas.get(34).setPosition(708, 326);
-        favelas.get(35).setPosition(776, 276);
+        favelas.get(32).setPosition(704, 257, 0, 0);
+        favelas.get(33).setPosition(735, 242, 787, 250);
+        favelas.get(34).setPosition(708, 326, 739, 362);
+        favelas.get(35).setPosition(776, 276, 0, 0);
 
         favelas.put(36, new Favela("Pavao Pavaozinho", continents.get(6), "pavaoPavaozinho.png"));
         favelas.put(37, new Favela("Chapeu Mangueira", continents.get(6), "chapeuMangueira.png"));
@@ -111,14 +111,14 @@ public class Data {
         favelas.put(41, new Favela("Rocinha", continents.get(6), "rocinha.png"));
 
         //Set Position
-        favelas.get(36).setPosition(765, 584);
-        favelas.get(37).setPosition(761, 437);
-        favelas.get(38).setPosition(603, 509);
-        favelas.get(39).setPosition(610, 459);
-        favelas.get(40).setPosition(530, 603);
-        favelas.get(41).setPosition(398, 553);
+        favelas.get(36).setPosition(765, 584, 773, 604);
+        favelas.get(37).setPosition(761, 437, 810, 538);
+        favelas.get(38).setPosition(603, 509, 736, 598);
+        favelas.get(39).setPosition(610, 459, 683, 507);
+        favelas.get(40).setPosition(530, 603, 598, 657);
+        favelas.get(41).setPosition(398, 553, 543, 602);
 
-//Fica em loop? Da problema?
+        //Fica em loop? Da problema?
         favelas.get(1).addNeighbourhood(new Favela[]{favelas.get(2), favelas.get(3), favelas.get(4)});
         favelas.get(2).addNeighbourhood(new Favela[]{favelas.get(1), favelas.get(3)});
         favelas.get(3).addNeighbourhood(new Favela[]{favelas.get(1), favelas.get(2), favelas.get(4)});

@@ -5,8 +5,10 @@ import java.util.Random;
 
 public class PlayerIA extends PlayerAbstract {
 
-    public PlayerIA(String name) {
+    public PlayerIA(String name, String img) {
+    	this.setId(Data.players.size()+1);
         this.setName(name);
+        this.setImg(img);
     }
 
     @Override

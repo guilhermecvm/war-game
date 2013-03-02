@@ -1,5 +1,6 @@
 package br.uff.view;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -50,15 +51,6 @@ public class Game {
 		
 		Data.player = Data.players.get(1);
 		Data.player.receiveRoundArmy();
-		
-		
-		//TODO distribuir membros para os players alocarem nas favelas
-		
-		// Só para testar
-		Data.favelas.get(1).setNumArmy(2);
-		Data.favelas.get(2).setNumArmy(2);
-		Data.favelas.get(3).setNumArmy(2);
-		Data.favelas.get(4).setNumArmy(2);
 
 		Deck deck = new Deck(Data.deck);
 	}
@@ -76,6 +68,10 @@ public class Game {
 	private void loop() {
 		while (!keyboard.keyDown(Keyboard.ESCAPE_KEY)) {
 			this.draw();
+			
+			this.drawText();
+			
+			this.checkGameStatus();
 
 			this.checkMouseOverFavela();
 
@@ -270,7 +266,16 @@ public class Game {
 			sprite.x = 986;
 			sprite.y = 684;
 			sprite.draw();
-		} /*else if (mouse.isOverArea(563, 583, 745, 662)) {
+
+			if (mouse.isLeftButtonPressed()) {
+				Data.player = Helper.nextPlayer();
+				Data.player.receiveRoundArmy();
+				Data.status = Status.DISTRIBUTING;
+				Data.attacking = null;
+				Data.defending = null;
+				this.eraseDice();
+			}
+		/*} else if (mouse.isOverArea(563, 583, 745, 662)) {
 			sprite.loadImage("media/menu/atacar.png");
 			sprite.x = 563;
 			sprite.y = 583;
@@ -279,20 +284,11 @@ public class Game {
 			if (mouse.isLeftButtonPressed()) {
 				Data.status = Status.ATTACKING;
 			}
-		}*/ else if (mouse.isOverArea(986, 544, 1346, 604)) {
+		} else if (mouse.isOverArea(986, 544, 1346, 604)) {
 			sprite.loadImage("media/menu/pegarCartaVerde.png");
 			sprite.x = 986;
 			sprite.y = 544;
-			sprite.draw();
-
-			if (mouse.isLeftButtonPressed()) {
-//				Data.player = Helper.nextPlayer();
-				Data.player.receiveRoundArmy();
-				Data.status = Status.DISTRIBUTING;
-				Data.attacking = null;
-				Data.defending = null;
-				this.eraseDice();
-			}
+			sprite.draw();*/
 		} else {
 			if (mouse.isLeftButtonPressed()) {
 				Data.attacking = null;
@@ -486,5 +482,29 @@ public class Game {
 		fundo.draw();
 		
 		this.drawDices();
+		
+		this.drawRegionInfo();
+	}
+	
+	private void drawText() {
+		window.drawText("Membros para alocar:", 1000, 350, Color.black);
+		window.drawText(String.valueOf(Data.player.getArmyAvaiable()), 1000, 380, Color.black);
+	}
+	
+	private void drawRegionInfo() {
+		for (Favela favela : Data.favelas.values()) {
+			sprite.loadImage("media/" + favela.getPlayer().getImg());
+			sprite.x = favela.getArmyX();
+			sprite.y = favela.getArmyY();
+			sprite.draw();
+			window.drawText(String.valueOf(favela.getNumArmy()), favela.getArmyX()+5, favela.getArmyY()+16, Color.white);
+		}
+	}
+	
+	private void checkGameStatus() {
+		if (Data.status == Status.DISTRIBUTING) {
+			if (Data.player.getArmyAvaiable() == 0)
+				Data.status = Status.ATTACKING;
+		}
 	}
 }

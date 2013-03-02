@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public interface Player {
 
+	public int getId();
+	
+	public void setId(int id);
+	
     public String getName();
 
     public void setName(String name);
@@ -11,6 +15,10 @@ public interface Player {
     public int getArmyAvaiable();
 
     public void setArmyAvaiable(int armyAvaiable);
+    
+    public String getImg();
+
+	public void setImg(String img);
     
     public void receiveRoundArmy();
 

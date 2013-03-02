@@ -79,4 +79,14 @@ public class Helper {
         }
         return resp;
     }
+    
+    public static Player nextPlayer() {
+    	Player player;
+    	if (Data.player.getId() == Data.players.size())
+    		player = Data.players.get(1);
+    	else
+    		player = Data.players.get(Data.player.getId() + 1);
+    	
+    	return player;
+    }
 }
