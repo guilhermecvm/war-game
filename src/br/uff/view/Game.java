@@ -96,181 +96,181 @@ public class Game {
 	private void checkMouseOverFavela() {
 		Favela favela;
 
-		if (mouse.isOverArea(185, 254, 275, 484)) {
+		if (mouse.isOverArea(226, 372, 298, 627)) {
 			favela = Data.favelas.get(1);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(136, 320, 185, 437)) {
+		} else if (mouse.isOverArea(148, 467, 198, 591)) {
 			favela = Data.favelas.get(2);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(49, 313, 131, 430)) {
+		} else if (mouse.isOverArea(49, 434, 149, 582)) {
 			favela = Data.favelas.get(3);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(36, 221, 196, 310)) {
+		} else if (mouse.isOverArea(37, 323, 209, 416)) {
 			favela = Data.favelas.get(4);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(122, 161, 184, 217)) {
+		} else if (mouse.isOverArea(138, 249, 203, 320)) {
 			favela = Data.favelas.get(5);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(43, 107, 125, 207)) {
+		} else if (mouse.isOverArea(47, 188, 145, 288)) {
 			favela = Data.favelas.get(6);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(149, 104, 236, 167)) {
+		} else if (mouse.isOverArea(172, 196, 262, 278)) {
 			favela = Data.favelas.get(7);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(178, 53, 226, 107)) {
+		} else if (mouse.isOverArea(207, 112, 264, 174)) {
 			favela = Data.favelas.get(8);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(143, 8, 239, 53)) {
+		} else if (mouse.isOverArea(168, 57, 282, 114)) {
 			favela = Data.favelas.get(9);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(140, 42, 179, 130)) {
+		} else if (mouse.isOverArea(163, 102, 221, 214)) {
 			favela = Data.favelas.get(10);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(101, 34, 151, 117)) {
+		} else if (mouse.isOverArea(118, 92, 169, 194)) {
 			favela = Data.favelas.get(11);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(71, 9, 143, 51)) {
+		} else if (mouse.isOverArea(66, 53, 164, 111)) {
 			favela = Data.favelas.get(12);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(46, 34, 115, 101)) {
+		} else if (mouse.isOverArea(33, 85, 123, 169)) {
 			favela = Data.favelas.get(13);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(240, 18, 285, 58)) {
+		} else if (mouse.isOverArea(285, 66, 341, 115)) {
 			favela = Data.favelas.get(14);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(263, 18, 321, 124)) {
+		} else if (mouse.isOverArea(326, 75, 391, 185)) {
 			favela = Data.favelas.get(15);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(322, 15, 378, 69)) {
+		} else if (mouse.isOverArea(392, 61, 465, 129)) {
 			favela = Data.favelas.get(16);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(282, 112, 343, 183)) {
+		} else if (mouse.isOverArea(341, 195, 419, 272)) {
 			favela = Data.favelas.get(17);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(250, 145, 345, 285)) {
+		} else if (mouse.isOverArea(298, 224, 422, 388)) {
 			favela = Data.favelas.get(18);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(336, 153, 427, 293)) {
+		} else if ((mouse.isOverArea(423, 304, 526, 402))||(mouse.isOverArea(418, 257, 478, 307))) {
 			favela = Data.favelas.get(19);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(349, 51, 413, 159)) {
+		} else if (mouse.isOverArea(461, 109, 503, 291)) {
 			favela = Data.favelas.get(20);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(407, 89, 445, 164) || mouse.isOverArea(420, 148, 501, 171)) {
+		} else if (mouse.isOverArea(513, 161, 542, 254) || mouse.isOverArea(545, 230, 622, 266)) {
 			favela = Data.favelas.get(21);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(394, 198, 479, 308)) {
+		} else if (mouse.isOverArea(485, 297, 587, 417)) {
 			favela = Data.favelas.get(22);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(396, 158, 501, 264)) {
+		} else if (mouse.isOverArea(500, 264, 618, 389)) {
 			favela = Data.favelas.get(23);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(453, 79, 490, 125)) {
+		} else if (mouse.isOverArea(563, 145, 609, 203)) {
 			favela = Data.favelas.get(24);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(427, 23, 463, 80)) {
+		} else if (mouse.isOverArea(542, 74, 597, 135)) {
 			favela = Data.favelas.get(25);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(478, 34, 530, 128)) {
+		} else if (mouse.isOverArea(599, 124, 661, 201)) {
 			favela = Data.favelas.get(26);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(430, 71, 510, 161)) {
+		} else if ((mouse.isOverArea(535, 144, 577, 226))||(mouse.isOverArea(570, 202, 630, 239))) {
 			favela = Data.favelas.get(27);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(535, 170, 572, 226)) {
+		} else if (mouse.isOverArea(670, 269, 713, 332)) {
 			favela = Data.favelas.get(28);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(522, 76, 595, 133)) {
+		} else if (mouse.isOverArea(661, 154, 732, 216)) {
 			favela = Data.favelas.get(29);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(490, 121, 562, 223)) {
+		} else if (mouse.isOverArea(619, 210, 683, 341)) {
 			favela = Data.favelas.get(30);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(475, 215, 577, 292)) {
+		} else if (mouse.isOverArea(617, 341, 721, 414)) {
 			favela = Data.favelas.get(31);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(562, 165, 597, 210)) {
+		} else if (mouse.isOverArea(704, 257, 748, 316)) {
 			favela = Data.favelas.get(32);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(586, 153, 682, 194)) {
+		} else if (mouse.isOverArea(735, 242, 853, 283)) {
 			favela = Data.favelas.get(33);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(565, 218, 637, 288)) {
+		} else if (mouse.isOverArea(719, 330, 785, 409)) {
 			favela = Data.favelas.get(34);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(617, 179, 720, 253)) {
+		} else if (mouse.isOverArea(784, 284, 903, 353)) {
 			favela = Data.favelas.get(35);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(609, 416, 654, 469)) {
+		} else if (mouse.isOverArea(766, 595, 797, 649)) {
 			favela = Data.favelas.get(36);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(666, 304, 748, 390) || mouse.isOverArea(618, 375, 685, 420)) {
+		} else if (mouse.isOverArea(773, 526, 841, 585) || mouse.isOverArea(859, 467, 932, 542)) {
 			favela = Data.favelas.get(37);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(576, 378, 653, 487) || mouse.isOverArea(528, 425, 610, 457) || mouse.isOverArea(486, 401, 551, 430)) {
+		} else if (mouse.isOverArea(612, 562, 685, 599) || mouse.isOverArea(663, 602, 762, 634) || mouse.isOverArea(728, 529, 767, 594)) {
 			favela = Data.favelas.get(38);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(491, 321, 653, 400)) {
+		} else if ((mouse.isOverArea(715, 459, 815, 526))||(mouse.isOverArea(615, 501, 715, 562))) {
 			favela = Data.favelas.get(39);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(428, 474, 506, 497) || mouse.isOverArea(491, 431, 534, 498)) {
+		} else if (mouse.isOverArea(532, 660, 624, 686) || mouse.isOverArea(623, 606, 631, 675)) {
 			favela = Data.favelas.get(40);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(327, 392, 521, 519)) {
+		} else if (mouse.isOverArea(420, 562, 616, 656)) {
 			favela = Data.favelas.get(41);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(15, 578, 197, 637)) {
-			sprite.loadImage("media/menu/comprar.png");
-			sprite.x = 15;
-			sprite.y = 578;
+		} else if (mouse.isOverArea(986, 614, 1346, 674)) {
+			sprite.loadImage("media/menu/verCartasVerde.png");
+			sprite.x = 986;
+			sprite.y = 614;
 			sprite.draw();
-		} else if (mouse.isOverArea(15, 664, 197, 723)) {
-			sprite.loadImage("media/menu/verCartas.png");
-			sprite.x = 15;
-			sprite.y = 664;
+		} else if (mouse.isOverArea(986, 684, 1346, 744)) {
+			sprite.loadImage("media/menu/passarJogadaVerde.png");
+			sprite.x = 986;
+			sprite.y = 684;
 			sprite.draw();
-		} else if (mouse.isOverArea(563, 583, 745, 662)) {
+		} /*else if (mouse.isOverArea(563, 583, 745, 662)) {
 			sprite.loadImage("media/menu/atacar.png");
 			sprite.x = 563;
 			sprite.y = 583;
@@ -279,10 +279,10 @@ public class Game {
 			if (mouse.isLeftButtonPressed()) {
 				Data.status = Status.ATTACKING;
 			}
-		} else if (mouse.isOverArea(563, 669, 745, 728)) {
-			sprite.loadImage("media/menu/passarJogada.png");
-			sprite.x = 563;
-			sprite.y = 669;
+		}*/ else if (mouse.isOverArea(986, 544, 1346, 604)) {
+			sprite.loadImage("media/menu/pegarCartaVerde.png");
+			sprite.x = 986;
+			sprite.y = 544;
 			sprite.draw();
 
 			if (mouse.isLeftButtonPressed()) {
@@ -310,9 +310,12 @@ public class Game {
 				if (favela.getPlayer() == Data.player) {
 					//Clicou na favela, abre uma dialog perguntando quantos membros vai alocar na favela.
 					String numArmy = JOptionPane.showInputDialog(window, "Quantos membros deseja alocar nessa favela?", "Alocando Membros", JOptionPane.INFORMATION_MESSAGE);
-					
+					try{
 					if (!Data.player.sendArmyTo(favela, Integer.parseInt(numArmy))) {
 						JOptionPane.showMessageDialog(window, "Você não tem essa quantidade de membros disponível.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+					}
+					}catch(Exception e){
+						Data.player.sendArmyTo(favela, 0);
 					}
 				}
 			}
