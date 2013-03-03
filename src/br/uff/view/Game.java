@@ -52,7 +52,7 @@ public class Game {
 		Data.player = Data.players.get(1);
 		Data.player.receiveRoundArmy();
 
-		Deck deck = new Deck(Data.deck);
+		Data.deck = new Deck(Data.deck_init);
 	}
 
 	private void loadObjects() {
