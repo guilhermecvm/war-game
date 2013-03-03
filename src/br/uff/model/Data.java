@@ -119,10 +119,52 @@ public class Data {
         favelas.get(41).setPosition(398, 553, 543, 602);
 
         //Fica em loop? Da problema?
-        favelas.get(1).addNeighbourhood(new Favela[]{favelas.get(2), favelas.get(3), favelas.get(4)});
+        favelas.get(1).addNeighbourhood(new Favela[]{favelas.get(2), favelas.get(3), favelas.get(4), favelas.get(41)});
         favelas.get(2).addNeighbourhood(new Favela[]{favelas.get(1), favelas.get(3)});
         favelas.get(3).addNeighbourhood(new Favela[]{favelas.get(1), favelas.get(2), favelas.get(4)});
         favelas.get(4).addNeighbourhood(new Favela[]{favelas.get(1), favelas.get(3), favelas.get(5)});
+        
+        favelas.get(5).addNeighbourhood(new Favela[]{favelas.get(6), favelas.get(7), favelas.get(4)});
+        favelas.get(6).addNeighbourhood(new Favela[]{favelas.get(5), favelas.get(7), favelas.get(10), favelas.get(11)});
+        favelas.get(7).addNeighbourhood(new Favela[]{favelas.get(5), favelas.get(6), favelas.get(8), favelas.get(10)});
+        favelas.get(8).addNeighbourhood(new Favela[]{favelas.get(7), favelas.get(9), favelas.get(10)});
+        favelas.get(9).addNeighbourhood(new Favela[]{favelas.get(8), favelas.get(12), favelas.get(14)});
+        favelas.get(10).addNeighbourhood(new Favela[]{favelas.get(6), favelas.get(7), favelas.get(8), favelas.get(11), favelas.get(12)});
+        favelas.get(11).addNeighbourhood(new Favela[]{favelas.get(6), favelas.get(10), favelas.get(12), favelas.get(13)});
+        favelas.get(12).addNeighbourhood(new Favela[]{favelas.get(9), favelas.get(10), favelas.get(11), favelas.get(13)});
+        favelas.get(13).addNeighbourhood(new Favela[]{favelas.get(11), favelas.get(12), favelas.get(26)});
+        
+        favelas.get(14).addNeighbourhood(new Favela[]{favelas.get(9), favelas.get(15)});
+        favelas.get(15).addNeighbourhood(new Favela[]{favelas.get(14), favelas.get(16), favelas.get(17), favelas.get(18) });
+        favelas.get(16).addNeighbourhood(new Favela[]{favelas.get(15), favelas.get(20)});
+        favelas.get(17).addNeighbourhood(new Favela[]{favelas.get(15), favelas.get(18), favelas.get(19)});
+        favelas.get(18).addNeighbourhood(new Favela[]{favelas.get(15), favelas.get(17), favelas.get(19), favelas.get(39), favelas.get(41)});
+        favelas.get(19).addNeighbourhood(new Favela[]{favelas.get(17), favelas.get(18), favelas.get(20), favelas.get(22), favelas.get(39)});
+        favelas.get(20).addNeighbourhood(new Favela[]{favelas.get(16), favelas.get(19), favelas.get(21), favelas.get(22), favelas.get(23)});
+        
+        favelas.get(21).addNeighbourhood(new Favela[]{favelas.get(20), favelas.get(23), favelas.get(27), favelas.get(30)});
+        favelas.get(22).addNeighbourhood(new Favela[]{favelas.get(19), favelas.get(20), favelas.get(23), favelas.get(31), favelas.get(39)});
+        favelas.get(23).addNeighbourhood(new Favela[]{favelas.get(20), favelas.get(21), favelas.get(22), favelas.get(30), favelas.get(31)});
+        favelas.get(24).addNeighbourhood(new Favela[]{favelas.get(25), favelas.get(26), favelas.get(27), favelas.get(30)});
+        favelas.get(25).addNeighbourhood(new Favela[]{favelas.get(24), favelas.get(26), favelas.get(27)});
+        favelas.get(26).addNeighbourhood(new Favela[]{favelas.get(13), favelas.get(24), favelas.get(25), favelas.get(29), favelas.get(30)});
+        favelas.get(27).addNeighbourhood(new Favela[]{favelas.get(21), favelas.get(24), favelas.get(25), favelas.get(30)});
+        favelas.get(28).addNeighbourhood(new Favela[]{favelas.get(30), favelas.get(31), favelas.get(32)});
+        favelas.get(29).addNeighbourhood(new Favela[]{favelas.get(26), favelas.get(30)});
+        favelas.get(30).addNeighbourhood(new Favela[]{favelas.get(21), favelas.get(23), favelas.get(24), favelas.get(26), favelas.get(27), favelas.get(28), favelas.get(29), favelas.get(31)});
+        favelas.get(31).addNeighbourhood(new Favela[]{favelas.get(22), favelas.get(23), favelas.get(28), favelas.get(30), favelas.get(34)});
+        
+        favelas.get(32).addNeighbourhood(new Favela[]{favelas.get(28), favelas.get(33), favelas.get(35)});
+        favelas.get(33).addNeighbourhood(new Favela[]{favelas.get(32), favelas.get(35)});
+        favelas.get(34).addNeighbourhood(new Favela[]{favelas.get(31), favelas.get(35)});
+        favelas.get(35).addNeighbourhood(new Favela[]{favelas.get(32), favelas.get(33), favelas.get(34)});
+        
+        favelas.get(36).addNeighbourhood(new Favela[]{favelas.get(37), favelas.get(38)});
+        favelas.get(37).addNeighbourhood(new Favela[]{favelas.get(36), favelas.get(38)});
+        favelas.get(38).addNeighbourhood(new Favela[]{favelas.get(36), favelas.get(37), favelas.get(39), favelas.get(40), favelas.get(41)});
+        favelas.get(39).addNeighbourhood(new Favela[]{favelas.get(18), favelas.get(19), favelas.get(22), favelas.get(38), favelas.get(41)});
+        favelas.get(40).addNeighbourhood(new Favela[]{favelas.get(38), favelas.get(41)});
+        favelas.get(41).addNeighbourhood(new Favela[]{favelas.get(1), favelas.get(18), favelas.get(38), favelas.get(39), favelas.get(40)});
     }
     
     public static Map<Integer, Dice> dicesAttack = new HashMap<Integer, Dice>();
