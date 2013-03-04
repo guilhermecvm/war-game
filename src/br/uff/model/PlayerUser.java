@@ -9,6 +9,7 @@ public class PlayerUser extends PlayerAbstract {
     	this.setId(Data.players.size()+1);
         this.setName(name);
         this.setImg(img);
+        this.setIa(false);
     }
 
     @Override
