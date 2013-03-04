@@ -7,8 +7,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -26,7 +24,6 @@ import br.uff.model.Deck;
 import br.uff.model.Dice;
 import br.uff.model.Favela;
 import br.uff.model.Helper;
-import br.uff.model.Player;
 import br.uff.model.Status;
 
 public class Game {
@@ -78,6 +75,8 @@ public class Game {
 			this.checkMouseOverFavela();
 
 			this.checkSelectedFavelas();
+			
+			Data.player.play();
 			
 			window.update();
 		}
@@ -270,12 +269,7 @@ public class Game {
 			sprite.draw();
 
 			if (mouse.isLeftButtonPressed()) {
-				Data.player = Helper.nextPlayer();
-				Data.player.receiveRoundArmy();
-				Data.status = Status.DISTRIBUTING;
-				Data.attacking = null;
-				Data.defending = null;
-				this.eraseDice();
+				Helper.nextPlayer();
 			}
 		/*} else if (mouse.isOverArea(563, 583, 745, 662)) {
 			sprite.loadImage("media/menu/atacar.png");
@@ -297,7 +291,7 @@ public class Game {
 				Data.defending = null;
 				
 				//Zera o valor dos dados pois vai atacar novamente
-				this.eraseDice();
+				Helper.eraseDice();
 			}
 		}
 	}
@@ -320,7 +314,7 @@ public class Game {
 			else if (Data.status == Status.ATTACKING) {
 				if (Data.attacking == null) {
 					//Zera o valor dos dados pois vai atacar novamente
-					this.eraseDice();
+					Helper.eraseDice();
 					
 					// Se favela clicada pertence ao jogador atual
 					if (favela.getPlayer() == Data.player) {
@@ -463,17 +457,6 @@ public class Game {
 			}
 		}
 	}
-	
-	private void eraseDice() {
-		for (Dice dice : Data.dicesAttack.values()) {
-			dice.setValue(0);
-		}
-		for (Dice dice : Data.dicesDefense.values()) {
-			dice.setValue(0);
-		}
-	}
-	
-	
 
 	private void unloadObjects() {
 		mouse = null;
@@ -489,6 +472,7 @@ public class Game {
 	}
 	
 	private void drawText() {
+		window.drawText(Data.player.getName(), 1000, 320, Color.black);
 		window.drawText("Membros para alocar:", 1000, 350, Color.black);
 		window.drawText(String.valueOf(Data.player.getArmyAvaiable()), 1000, 380, Color.black);
 	}

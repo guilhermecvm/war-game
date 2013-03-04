@@ -91,14 +91,29 @@ public class Helper {
         return resp;
     }
 
-    public static Player nextPlayer() {
+    public static void nextPlayer() {
         Player player;
         if (Data.player.getId() == Data.players.size()) {
             player = Data.players.get(1);
         } else {
             player = Data.players.get(Data.player.getId() + 1);
         }
-
-        return player;
+        
+        Data.player = player;
+        
+        Data.player.receiveRoundArmy();
+		Data.status = Status.DISTRIBUTING;
+		Data.attacking = null;
+		Data.defending = null;
+		Helper.eraseDice();
     }
+    
+    public static void eraseDice() {
+		for (Dice dice : Data.dicesAttack.values()) {
+			dice.setValue(0);
+		}
+		for (Dice dice : Data.dicesDefense.values()) {
+			dice.setValue(0);
+		}
+	}
 }
