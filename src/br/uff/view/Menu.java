@@ -23,7 +23,7 @@ public class Menu {
         mouse = window.getMouse();
         sprite = new Sprite("media/menu/botao jogar.png");
         sprite.x = 326;
-        musicaFundo = new Sound("media/audio/rap das armas.wav");
+        musicaFundo = new Sound("media/audio/rap das armas cortado.wav");
         musicaFundo.increaseVolume(6.0206f);
         musicaFundo.play();
         musicaFundo.setRepeat(true);
