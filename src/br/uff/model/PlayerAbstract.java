@@ -109,7 +109,7 @@ public abstract class PlayerAbstract implements Player {
                     this.cards.remove(card);
                 }
                 this.armyAvaiable = Helper.numberOfBonusArmy();
-                Game.increment_card_trades();
+                Data.increment_card_trades();
             }
         }
     }

@@ -23,7 +23,7 @@ public class Main {
     public static void main(String[] args) {
     	//Distribui Regiões para os players no inicio do jogo
     	Helper.distributeFavelas();
-        Deck deck = new Deck(Data.deck);
+        Deck deck = new Deck(Data.deck_init);
     	
         while (true) {
             Scanner in = new Scanner(System.in);
