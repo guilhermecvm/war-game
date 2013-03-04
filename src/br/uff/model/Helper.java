@@ -12,6 +12,17 @@ public class Helper {
         return r.nextInt(6) + 1; //0~5 + 1 = 1~6
     }
 
+    public static boolean gameOver() {
+        boolean over = true;
+        for (Player p : Data.players.values()) {
+            if(!p.getPossibleMoves().isEmpty() || p.getArmyAvaiable() > 0){
+                over = false;
+                break;
+            }
+        }
+        return over;
+    }
+
     public static void distributeFavelas() {
         List<Favela> favelas = new ArrayList<Favela>();
         favelas.addAll(Data.favelas.values());
@@ -79,14 +90,15 @@ public class Helper {
         }
         return resp;
     }
-    
+
     public static Player nextPlayer() {
-    	Player player;
-    	if (Data.player.getId() == Data.players.size())
-    		player = Data.players.get(1);
-    	else
-    		player = Data.players.get(Data.player.getId() + 1);
-    	
-    	return player;
+        Player player;
+        if (Data.player.getId() == Data.players.size()) {
+            player = Data.players.get(1);
+        } else {
+            player = Data.players.get(Data.player.getId() + 1);
+        }
+
+        return player;
     }
 }

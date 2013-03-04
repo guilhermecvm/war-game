@@ -10,6 +10,7 @@ public class Data {
     public static Favela attacking = null;
     public static Favela defending = null;
     public static Status status = null;
+    public static int counter = 0;
     
     public static Map<Integer, Continent> continents = new HashMap<Integer, Continent>();
     static {
@@ -24,7 +25,9 @@ public class Data {
     public static Map<Integer, Player> players = new HashMap<Integer, Player>();
     static {
         players.put(1, new PlayerUser("Player 1", "blueArmy.png"));
+//        players.put(1, new PlayerIA("Player 1", "blueArmy.png"));
         players.put(2, new PlayerIA("Player IA", "greenArmy.png"));
+        players.put(3, new PlayerIA("Player IA2", "blackArmy.png"));
     }
 
     public static Map<Integer, Favela> favelas = new HashMap<Integer, Favela>();
