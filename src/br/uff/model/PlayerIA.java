@@ -1,6 +1,8 @@
 package br.uff.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class PlayerIA extends PlayerAbstract {
 
@@ -43,6 +45,8 @@ public class PlayerIA extends PlayerAbstract {
             if (options.isEmpty()) {
                 options = favelas;
             }
+            long seed = System.nanoTime();
+            Collections.shuffle(options, new Random(seed));
             int i = 0;
             Favela favelaReinforce = options.get(i % options.size());
             int reinforcements = this.getArmyAvaiable() / 2;
@@ -85,7 +89,7 @@ public class PlayerIA extends PlayerAbstract {
                     Favela favelaDefense = move[1];
                     int attackQty = favelaAttack.getNumArmy() - 1;
                     int i = 0;
-                    while (favelaAttack.getNumArmy() < 2 && i < move.length) {
+                    while (favelaAttack.getNumArmy() < 2 && i < moves.size()) {
                         move = moves.get(0);
                         favelaAttack = move[0];
                         favelaDefense = move[1];
@@ -93,6 +97,8 @@ public class PlayerIA extends PlayerAbstract {
                     }
                     this.attack(favelaAttack, favelaDefense, attackQty);
                 } else {
+                    long seed = System.nanoTime();
+                    Collections.shuffle(options, new Random(seed));
                     for (Favela[] move : options) {
                         Favela favelaAttack = move[0];
                         Favela favelaDefense = move[1];
