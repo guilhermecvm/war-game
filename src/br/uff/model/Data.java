@@ -59,15 +59,15 @@ public class Data {
         favelas.put(11, new Favela("Bento Ribeiro", continents.get(2), "baixada7.png"));
         favelas.put(12, new Favela("Honório Gurgel", continents.get(2), "baixada8.png"));
         favelas.put(13, new Favela("Vila Eugenia", continents.get(2), "baixada9.png"));
-        favelas.get(5).setPosition(113, 242, 0, 0);
-        favelas.get(6).setPosition(29, 181, 0, 0);
-        favelas.get(7).setPosition(150, 170, 0, 0);
-        favelas.get(8).setPosition(202, 102, 0, 0);
-        favelas.get(9).setPosition(159, 52, 0, 0);
-        favelas.get(10).setPosition(155, 95, 0, 0);
-        favelas.get(11).setPosition(105, 87, 0, 0);
-        favelas.get(12).setPosition(66, 53, 0, 0);
-        favelas.get(13).setPosition(33, 85, 0, 0);
+        favelas.get(5).setPosition(113, 242, 156, 278);
+        favelas.get(6).setPosition(29, 181, 95, 220);
+        favelas.get(7).setPosition(150, 170, 222, 218);
+        favelas.get(8).setPosition(202, 102, 220, 137);
+        favelas.get(9).setPosition(159, 52, 212, 68);
+        favelas.get(10).setPosition(155, 95, 176, 137);
+        favelas.get(11).setPosition(105, 87, 131, 135);
+        favelas.get(12).setPosition(66, 53, 123, 66);
+        favelas.get(13).setPosition(33, 85, 66, 123);
         favelas.put(14, new Favela("Morro do Juramento", continents.get(3), "avenida1.png"));
         favelas.put(15, new Favela("Tomás Coelho", continents.get(3), "avenida2.png"));
         favelas.put(16, new Favela("Vila Cruzeiro", continents.get(3), "vilaCruzeiro.png"));
@@ -76,12 +76,12 @@ public class Data {
         favelas.put(19, new Favela("Borda do Mato", continents.get(3), "avenida6.png"));
         favelas.put(20, new Favela("Jacarezinho", continents.get(3), "jacarezinho.png"));
 
-        favelas.get(14).setPosition(285, 66, 0, 0);
-        favelas.get(15).setPosition(315, 66, 0, 0);
+        favelas.get(14).setPosition(285, 66, 308, 87);
+        favelas.get(15).setPosition(315, 66, 347, 132);
         favelas.get(16).setPosition(392, 61, 417, 82);
-        favelas.get(17).setPosition(340, 183, 0, 0);
+        favelas.get(17).setPosition(340, 183, 366, 225);
         favelas.get(18).setPosition(298, 221, 364, 321);
-        favelas.get(19).setPosition(413, 238, 0, 0);
+        favelas.get(19).setPosition(413, 238, 470, 331);
         favelas.get(20).setPosition(427, 106, 482, 179);
         favelas.put(21, new Favela("Higienópolis", continents.get(4), "zonaNorte2.png"));
         favelas.put(22, new Favela("Morro do Borel", continents.get(4), "zonaNorte1.png"));
@@ -95,13 +95,13 @@ public class Data {
         favelas.put(30, new Favela("Mangueira", continents.get(4), "mangueira.png"));
         favelas.put(31, new Favela("Salgueiro", continents.get(4), "salgueiro.png"));
 
-        favelas.get(21).setPosition(503, 158, 0, 0);
-        favelas.get(22).setPosition(482, 275, 0, 0);
+        favelas.get(21).setPosition(503, 158, 537, 342);
+        favelas.get(22).setPosition(482, 275, 546, 231);
         favelas.get(23).setPosition(495, 248, 554, 277);
-        favelas.get(24).setPosition(561, 132, 0, 0);
-        favelas.get(25).setPosition(528, 72, 0, 0);
+        favelas.get(24).setPosition(561, 132, 561, 190);
+        favelas.get(25).setPosition(528, 72, 587, 169);
         favelas.get(26).setPosition(595, 87, 621, 151);
-        favelas.get(27).setPosition(531, 134, 0, 0);
+        favelas.get(27).setPosition(531, 134, 563, 103);
         favelas.get(28).setPosition(665, 256, 685, 296);
         favelas.get(29).setPosition(651, 141, 700, 176);
         favelas.get(30).setPosition(609, 199, 633, 290);
@@ -111,10 +111,10 @@ public class Data {
         favelas.put(34, new Favela("Morro da Coroa", continents.get(5), "coroa.png"));
         favelas.put(35, new Favela("Baronesa", continents.get(5), "central2.png"));
 
-        favelas.get(32).setPosition(704, 257, 0, 0);
+        favelas.get(32).setPosition(704, 257, 724, 285);
         favelas.get(33).setPosition(735, 242, 787, 250);
         favelas.get(34).setPosition(708, 326, 739, 362);
-        favelas.get(35).setPosition(776, 276, 0, 0);
+        favelas.get(35).setPosition(776, 276, 847, 311);
 
         favelas.put(36, new Favela("Pavao Pavaozinho", continents.get(6), "pavaoPavaozinho.png"));
         favelas.put(37, new Favela("Chapeu Mangueira", continents.get(6), "chapeuMangueira.png"));

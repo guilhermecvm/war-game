@@ -244,11 +244,11 @@ public class Game {
 			favela = Data.favelas.get(37);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if (mouse.isOverArea(612, 562, 685, 599) || mouse.isOverArea(663, 602, 762, 634) || mouse.isOverArea(728, 529, 767, 594)) {
+		} else if (mouse.isOverArea(612, 562, 685, 599) || mouse.isOverArea(663, 602, 762, 634) || mouse.isOverArea(728, 529, 767, 594) || mouse.isOverArea(784, 512, 830, 532)) {
 			favela = Data.favelas.get(38);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
-		} else if ((mouse.isOverArea(715, 459, 815, 526))||(mouse.isOverArea(615, 501, 715, 562))) {
+		} else if ((mouse.isOverArea(713, 478, 770, 526)) || mouse.isOverArea(760, 459, 813, 513) || (mouse.isOverArea(615, 501, 715, 562))) {
 			favela = Data.favelas.get(39);
 			this.drawFavela(favela);
 			this.checkMouseClickFavela(favela);
