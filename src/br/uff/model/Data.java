@@ -35,9 +35,9 @@ public class Data {
 
     static {
         players.put(1, new PlayerUser("Player 1", "blueArmy.png"));
-//        players.put(1, new PlayerIA("Player 1", "blueArmy.png"));
-        players.put(2, new PlayerIA("Player IA", "greenArmy.png"));
+        players.put(2, new PlayerIA("Player IA1", "greenArmy.png"));
         players.put(3, new PlayerIA("Player IA2", "blackArmy.png"));
+        players.put(4, new PlayerIA("Player IA3", "redArmy.png"));
     }
     public static Map<Integer, Favela> favelas = new HashMap<Integer, Favela>();
 
@@ -182,16 +182,16 @@ public class Data {
     public static Map<Integer, Dice> dicesAttack = new HashMap<Integer, Dice>();
 
     static {
-        dicesAttack.put(1, new Dice("", 876, 15, 0));
-        dicesAttack.put(2, new Dice("", 1028, 15, 0));
-        dicesAttack.put(3, new Dice("", 1186, 15, 0));
+        dicesAttack.put(1, new Dice("", 986, 15, 0));
+        dicesAttack.put(2, new Dice("", 1116, 15, 0));
+        dicesAttack.put(3, new Dice("", 1246, 15, 0));
     }
     public static Map<Integer, Dice> dicesDefense = new HashMap<Integer, Dice>();
 
     static {
-        dicesDefense.put(1, new Dice("", 876, 155, 0));
-        dicesDefense.put(2, new Dice("", 1028, 155, 0));
-        dicesDefense.put(3, new Dice("", 1186, 155, 0));
+        dicesDefense.put(1, new Dice("", 986, 135, 0));
+        dicesDefense.put(2, new Dice("", 1116, 135, 0));
+        dicesDefense.put(3, new Dice("", 1246, 135, 0));
     }
     public static ArrayList<Card> deck_init = new ArrayList<Card>();
 

@@ -3,6 +3,7 @@ package br.uff.view;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -75,6 +76,8 @@ public class Game {
 			this.checkMouseOverFavela();
 
 			this.checkSelectedFavelas();
+			
+			this.drawRegionInfo();
 			
 			Data.player.play();
 			
@@ -467,14 +470,11 @@ public class Game {
 		fundo.draw();
 		
 		this.drawDices();
-		
-		this.drawRegionInfo();
 	}
 	
 	private void drawText() {
-		window.drawText(Data.player.getName(), 1000, 320, Color.black);
-		window.drawText("Membros para alocar:", 1000, 350, Color.black);
-		window.drawText(String.valueOf(Data.player.getArmyAvaiable()), 1000, 380, Color.black);
+		window.drawText(Data.player.getName(), 990, 320, Color.black, Font.decode("ARIAL-REGULAR-36"));
+		window.drawText("Membros para alocar: " + String.valueOf(Data.player.getArmyAvaiable()), 990, 350, Color.black, Font.decode("ARIAL-REGULAR-22"));
 	}
 	
 	private void drawRegionInfo() {
@@ -483,7 +483,7 @@ public class Game {
 			sprite.x = favela.getArmyX();
 			sprite.y = favela.getArmyY();
 			sprite.draw();
-			window.drawText(String.valueOf(favela.getNumArmy()), favela.getArmyX()+5, favela.getArmyY()+16, Color.white);
+			window.drawText(String.valueOf(favela.getNumArmy()), favela.getArmyX()+5, favela.getArmyY()+15, Color.white, Font.decode("ARIAL-REGULAR-12"));
 		}
 	}
 	
