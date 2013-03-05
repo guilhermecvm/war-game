@@ -1,10 +1,10 @@
 package br.uff.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import br.uff.view.Game;
 import java.util.Random;
 
 public abstract class PlayerAbstract implements Player {
@@ -105,10 +105,16 @@ public abstract class PlayerAbstract implements Player {
             }
 
             if ((type_circle_count == 3 || type_square_count == 3 || type_triangle_count == 3) || (type_circle_count == 1 && type_square_count == 1 && type_triangle_count == 1)) {
+                ArrayList<Integer> index = new ArrayList<Integer>();
+                
                 for (Card card : cards) {
-                    this.cards.remove(card);
+                    index.add(this.getCards().indexOf(card)) ;
                 }
-                this.armyAvaiable = Helper.numberOfBonusArmy();
+                Collections.sort(index, Collections.reverseOrder());
+                for (Integer i : index) {
+                    this.getCards().remove((int) i);
+                }
+                this.armyAvaiable = this.armyAvaiable + Helper.numberOfBonusArmy();
                 Data.increment_card_trades();
             }
         }

@@ -25,6 +25,7 @@ import br.uff.model.Deck;
 import br.uff.model.Dice;
 import br.uff.model.Favela;
 import br.uff.model.Helper;
+import br.uff.model.Player;
 import br.uff.model.Status;
 
 public class Game {
@@ -48,6 +49,11 @@ public class Game {
 		// Distribui Favelas para os players no inicio do jogo
 		Helper.distributeFavelas();
 		Data.status = Status.DISTRIBUTING;
+                
+                for(Player p : Data.players.values()){
+                    p.setArmyAvaiable(Data.INITIAL_ARMY);
+                    p.initDistribution();
+                }
 		
 		Data.player = Data.players.get(1);
 		Data.player.receiveRoundArmy();

@@ -13,6 +13,7 @@ public class Data {
     public static int counter = 0;
     public static Deck deck;
     private static int CARD_TRADES = 0;
+    public static final int INITIAL_ARMY = 15;
 
     public static void increment_card_trades() {
         CARD_TRADES++;
@@ -20,6 +21,10 @@ public class Data {
 
     public static int get_card_trades() {
         return CARD_TRADES;
+    }
+
+    public static void set_card_trades(int trades) {
+        CARD_TRADES = trades;
     }
     public static Map<Integer, Continent> continents = new HashMap<Integer, Continent>();
 
