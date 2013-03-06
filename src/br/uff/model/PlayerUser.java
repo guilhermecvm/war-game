@@ -1,8 +1,5 @@
 package br.uff.model;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class PlayerUser extends PlayerAbstract {
 
     public PlayerUser(String name, String img) {

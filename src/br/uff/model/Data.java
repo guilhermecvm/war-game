@@ -40,10 +40,10 @@ public class Data {
     public static Map<Integer, Player> players = new HashMap<Integer, Player>();
 
     static {
-        players.put(1, new PlayerUser("Player 1", "blueArmy.png"));
+        players.put(1, new PlayerIA("Player 1", "blueArmy.png"));
         players.put(2, new PlayerIA("Player IA1", "greenArmy.png"));
-//        players.put(3, new PlayerIA("Player IA2", "blackArmy.png"));
-//        players.put(4, new PlayerIA("Player IA3", "redArmy.png"));
+        players.put(3, new PlayerIA("Player IA2", "blackArmy.png"));
+        players.put(4, new PlayerIA("Player IA3", "redArmy.png"));
     }
     public static Map<Integer, Favela> favelas = new HashMap<Integer, Favela>();
 

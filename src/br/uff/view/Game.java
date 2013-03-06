@@ -98,16 +98,16 @@ public class Game {
 
             if (Helper.gameOver()) {
                 Player winner = Data.favelas.get(1).getPlayer();
+                window.update();
                 JOptionPane.showMessageDialog(null, "Fim de jogo! Vencedor: " + winner.getName());
                 System.exit(0);
             } else {
                 if (Data.player.getPossibleMoves().isEmpty()) {
-                    Data.player.passTurn();
+                    Helper.nextPlayer();
                 } else {
                     Data.player.play();
                 }
             }
-
 
             window.update();
         }

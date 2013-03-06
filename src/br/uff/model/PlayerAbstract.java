@@ -1,7 +1,6 @@
 package br.uff.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -253,23 +252,11 @@ public abstract class PlayerAbstract implements Player {
         for (int i = 0; i < myFavelas.size(); i++) {
             Favela myFavela = myFavelas.get(i);
             ArrayList<Favela> neigbourhood = (ArrayList<Favela>) myFavela.getNeighbourhood();
-            if (myFavela.getNumArmy() > 1) {
-                if (this.isIa()) {
-                    System.out.println("--------------------------");
-                    System.out.println("Minha favela: " + myFavela.getName());
-                }
-                for (int j = 0; j < neigbourhood.size(); j++) {
-                    Favela neigbour = neigbourhood.get(j);
-                    if (this.isIa()) {
-                        System.out.println("Vizinho: " + neigbour.getName());
-                    }
-                    if (!neigbour.getPlayer().equals(this)) {
-                        if (this.isIa()) {
-                            System.out.println("---adicionei: " + neigbour.getName());
-                        }
-                        Favela[] move = {myFavela, neigbour};
-                        moves.add(move);
-                    }
+            for (int j = 0; j < neigbourhood.size(); j++) {
+                Favela neigbour = neigbourhood.get(j);
+                if (!neigbour.getPlayer().equals(this)) {
+                    Favela[] move = {myFavela, neigbour};
+                    moves.add(move);
                 }
             }
         }

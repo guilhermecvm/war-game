@@ -3,6 +3,8 @@ package br.uff.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PlayerIA extends PlayerAbstract {
 
@@ -15,10 +17,19 @@ public class PlayerIA extends PlayerAbstract {
 
     @Override
     public void play() {
-        this.distributeArmy();
-        this.attackIntelligence();
         this.tradeCardsIntelligence();
-//        this.buyCard();
+        this.distributeArmy();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PlayerIA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.attackIntelligence();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PlayerIA.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Helper.nextPlayer();
     }
 
@@ -30,13 +41,10 @@ public class PlayerIA extends PlayerAbstract {
             ArrayList<Favela> options = new ArrayList<Favela>();
             for (Favela favela : favelas) {
 
-                System.out.println(favela.getName() + ": " + favela.getNumArmy() + " membros.");
                 ArrayList<Favela> neighbourhood = (ArrayList<Favela>) favela.getNeighbourhood();
 
                 for (Favela neighbour : neighbourhood) {
-                    System.out.println("Vizinho : " + neighbour.getName() + ": " + neighbour.getNumArmy() + " membros.");
                     if (neighbour.getPlayer() != this && neighbour.getNumArmy() >= favela.getNumArmy()) {
-                        System.out.println("adicionei : " + favela.getName());
                         options.add(favela);
                         break;
                     }
@@ -70,23 +78,15 @@ public class PlayerIA extends PlayerAbstract {
     private void attackIntelligence() {
         try {
             ArrayList<Favela[]> moves = this.getPossibleMoves();
-            System.out.println("moves " + moves.size());
             if (moves.size() < 1) {
                 System.out.println("Este jogador não pode fazer nenhuma jogada.");
             } else {
                 ArrayList<Favela[]> options = new ArrayList<Favela[]>();
 
-                System.out.println("moves " + moves.size());
                 for (Favela[] move : moves) {
 
                     Favela favelaAttack = move[0];
-                    System.out.println("favelaAttack " + favelaAttack.getName());
-                    System.out.println("army " + favelaAttack.getNumArmy());
-                    System.out.println();
                     Favela favelaDefense = move[1];
-                    System.out.println("favelaDefense " + favelaDefense.getName());
-                    System.out.println("army " + favelaDefense.getNumArmy());
-                    System.out.println();
                     if (favelaAttack.getNumArmy() >= favelaDefense.getNumArmy()) {
                         options.add(move);
                     }

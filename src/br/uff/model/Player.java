@@ -35,7 +35,7 @@ public interface Player {
     public void tradeCards(ArrayList<Card> cards);
 
     public void play();
-    
+
     public void passTurn();
     //attackQty = num membros (sem incluir o que tem que ficar na favela)
 
@@ -52,6 +52,6 @@ public interface Player {
     public boolean isIa();
 
     public void setIa(boolean ia);
-    
+
     public void initDistribution();
 }
