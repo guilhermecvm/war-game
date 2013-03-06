@@ -95,6 +95,9 @@ public class Helper {
 
     public static void nextPlayer() {
         Player player;
+        
+        Data.player.buyCard();
+        
         if (Data.player.getId() == Data.players.size()) {
             player = Data.players.get(1);
         } else {

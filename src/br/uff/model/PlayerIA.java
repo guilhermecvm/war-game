@@ -18,7 +18,7 @@ public class PlayerIA extends PlayerAbstract {
         this.distributeArmy();
         this.attackIntelligence();
         this.tradeCardsIntelligence();
-        this.buyCard();
+//        this.buyCard();
         Helper.nextPlayer();
     }
 
