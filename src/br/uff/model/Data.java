@@ -12,6 +12,7 @@ public class Data {
     public static Status status = null;
     public static int counter = 0;
     public static Deck deck;
+    public static ArrayList<Card> trash = new ArrayList<Card>();
     private static int CARD_TRADES = 0;
     public static final int INITIAL_ARMY = 15;
 
@@ -41,8 +42,8 @@ public class Data {
     static {
         players.put(1, new PlayerUser("Player 1", "blueArmy.png"));
         players.put(2, new PlayerIA("Player IA1", "greenArmy.png"));
-        players.put(3, new PlayerIA("Player IA2", "blackArmy.png"));
-        players.put(4, new PlayerIA("Player IA3", "redArmy.png"));
+//        players.put(3, new PlayerIA("Player IA2", "blackArmy.png"));
+//        players.put(4, new PlayerIA("Player IA3", "redArmy.png"));
     }
     public static Map<Integer, Favela> favelas = new HashMap<Integer, Favela>();
 

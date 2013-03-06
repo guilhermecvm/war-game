@@ -36,9 +36,16 @@ public abstract class PlayerAbstract implements Player {
 
     @Override
     public void buyCard() {
-        Card card = Deck.getCards().remove(0);
+
+        Card card = Data.deck.getCards().remove(0);
         this.cards.add(card);
-        System.out.println("Comprou carta " + card);
+
+        System.out.println("Comprou carta " + card + " . Sobraram " + Data.deck.getCards().size() + " cartas.");
+
+        if (Data.deck.getCards().isEmpty()) {
+            Data.deck = new Deck((ArrayList<Card>) Data.trash.clone());
+            Data.trash = new ArrayList<Card>();
+        }
     }
 
     @Override
@@ -106,13 +113,13 @@ public abstract class PlayerAbstract implements Player {
 
             if ((type_circle_count == 3 || type_square_count == 3 || type_triangle_count == 3) || (type_circle_count == 1 && type_square_count == 1 && type_triangle_count == 1)) {
                 ArrayList<Integer> index = new ArrayList<Integer>();
-                
+
                 for (Card card : cards) {
-                    index.add(this.getCards().indexOf(card)) ;
+                    index.add(this.getCards().indexOf(card));
                 }
                 Collections.sort(index, Collections.reverseOrder());
                 for (Integer i : index) {
-                    this.getCards().remove((int) i);
+                    Data.trash.add(this.getCards().remove((int) i));
                 }
                 this.armyAvaiable = this.armyAvaiable + Helper.numberOfBonusArmy();
                 Data.increment_card_trades();
@@ -247,9 +254,19 @@ public abstract class PlayerAbstract implements Player {
             Favela myFavela = myFavelas.get(i);
             ArrayList<Favela> neigbourhood = (ArrayList<Favela>) myFavela.getNeighbourhood();
             if (myFavela.getNumArmy() > 1) {
+                if (this.isIa()) {
+                    System.out.println("--------------------------");
+                    System.out.println("Minha favela: " + myFavela.getName());
+                }
                 for (int j = 0; j < neigbourhood.size(); j++) {
                     Favela neigbour = neigbourhood.get(j);
+                    if (this.isIa()) {
+                        System.out.println("Vizinho: " + neigbour.getName());
+                    }
                     if (!neigbour.getPlayer().equals(this)) {
+                        if (this.isIa()) {
+                            System.out.println("---adicionei: " + neigbour.getName());
+                        }
                         Favela[] move = {myFavela, neigbour};
                         moves.add(move);
                     }

@@ -34,7 +34,7 @@ public class PlayerIA extends PlayerAbstract {
                 ArrayList<Favela> neighbourhood = (ArrayList<Favela>) favela.getNeighbourhood();
 
                 for (Favela neighbour : neighbourhood) {
-                    System.out.println("Vizinho : " + neighbour.getName() + ": " + favela.getNumArmy() + " membros.");
+                    System.out.println("Vizinho : " + neighbour.getName() + ": " + neighbour.getNumArmy() + " membros.");
                     if (neighbour.getPlayer() != this && neighbour.getNumArmy() >= favela.getNumArmy()) {
                         System.out.println("adicionei : " + favela.getName());
                         options.add(favela);
@@ -70,17 +70,25 @@ public class PlayerIA extends PlayerAbstract {
     private void attackIntelligence() {
         try {
             ArrayList<Favela[]> moves = this.getPossibleMoves();
+            System.out.println("moves " + moves.size());
             if (moves.size() < 1) {
                 System.out.println("Este jogador não pode fazer nenhuma jogada.");
             } else {
                 ArrayList<Favela[]> options = new ArrayList<Favela[]>();
 
+                System.out.println("moves " + moves.size());
                 for (Favela[] move : moves) {
+
                     Favela favelaAttack = move[0];
+                    System.out.println("favelaAttack " + favelaAttack.getName());
+                    System.out.println("army " + favelaAttack.getNumArmy());
+                    System.out.println();
                     Favela favelaDefense = move[1];
+                    System.out.println("favelaDefense " + favelaDefense.getName());
+                    System.out.println("army " + favelaDefense.getNumArmy());
+                    System.out.println();
                     if (favelaAttack.getNumArmy() >= favelaDefense.getNumArmy()) {
                         options.add(move);
-                        break;
                     }
                 }
                 if (options.isEmpty()) {
@@ -127,12 +135,14 @@ public class PlayerIA extends PlayerAbstract {
         try {
             if (this.canTradeCards()) {
                 boolean trade = true;
-                for (Player p : Data.players.values()) {
-                    if (p != this && p.getCards().size() > this.getCards().size()) {
-                        trade = false;
-                        break;
-                    }
+                if (this.getCards().size() < 5) {
+                    for (Player p : Data.players.values()) {
+                        if (p != this && p.getCards().size() > this.getCards().size()) {
+                            trade = false;
+                            break;
+                        }
 
+                    }
                 }
                 if (trade) {
                     ArrayList<Card> tradingCards = new ArrayList<Card>();

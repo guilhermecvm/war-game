@@ -13,9 +13,11 @@ public class Helper {
     }
 
     public static boolean gameOver() {
+
         boolean over = true;
-        for (Player p : Data.players.values()) {
-            if(!p.getPossibleMoves().isEmpty() || p.getArmyAvaiable() > 0){
+        Player winner = Data.favelas.get(1).getPlayer();
+        for (Favela f : Data.favelas.values()) {
+            if (f.getPlayer() != winner) {
                 over = false;
                 break;
             }
@@ -98,22 +100,22 @@ public class Helper {
         } else {
             player = Data.players.get(Data.player.getId() + 1);
         }
-        
+
         Data.player = player;
-        
+
         Data.player.receiveRoundArmy();
-		Data.status = Status.DISTRIBUTING;
-		Data.attacking = null;
-		Data.defending = null;
-		Helper.eraseDice();
+        Data.status = Status.DISTRIBUTING;
+        Data.attacking = null;
+        Data.defending = null;
+        Helper.eraseDice();
     }
-    
+
     public static void eraseDice() {
-		for (Dice dice : Data.dicesAttack.values()) {
-			dice.setValue(0);
-		}
-		for (Dice dice : Data.dicesDefense.values()) {
-			dice.setValue(0);
-		}
-	}
+        for (Dice dice : Data.dicesAttack.values()) {
+            dice.setValue(0);
+        }
+        for (Dice dice : Data.dicesDefense.values()) {
+            dice.setValue(0);
+        }
+    }
 }
