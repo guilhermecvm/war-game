@@ -134,8 +134,13 @@ public class Game {
     }
     
     private void checkNumberOfCards() {
-        if ((Data.player.getCards().size() == 5) && (window.isActive())) {
+        if ((Data.player.getCards().size() == 5) && (window.isActive()) && (!Data.player.isIa())) {
             this.showTradeCards();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
@@ -459,6 +464,7 @@ public class Game {
         panel.setSize(1300, 600);
         panel.setResizable(true);
         panel.setVisible(true);
+        panel.setExtendedState(panel.getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
     
     private void showAttackPanel() {
@@ -532,7 +538,7 @@ public class Game {
                         JOptionPane.showMessageDialog(window, "Número de membros inválido. Deve ter pelo menos 1 membro tomando conta da favela " + Data.attacking.getName() + "!", "Movimentando", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
-                JOptionPane.showMessageDialog(window, "Membros enviados a nova favela com sucesso.", "Movimentando", JOptionPane.INFORMATION_MESSAGE);
+//                JOptionPane.showMessageDialog(window, "Membros enviados a nova favela com sucesso.", "Movimentando", JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Zera attacking e defending
