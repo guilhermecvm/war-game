@@ -53,4 +53,8 @@ public class Card {
     public int get_type() {
         return this.type;
     }
+    
+    public String getImage(){
+        return this.img;
+    }
 }

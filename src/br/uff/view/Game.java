@@ -20,6 +20,7 @@ import br.uff.jplay.Keyboard;
 import br.uff.jplay.Mouse;
 import br.uff.jplay.Sprite;
 import br.uff.jplay.Window;
+import br.uff.model.Card;
 import br.uff.model.Data;
 import br.uff.model.Deck;
 import br.uff.model.Dice;
@@ -27,6 +28,13 @@ import br.uff.model.Favela;
 import br.uff.model.Helper;
 import br.uff.model.Player;
 import br.uff.model.Status;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 
 public class Game {
 
@@ -79,6 +87,8 @@ public class Game {
             this.drawText();
 
             this.checkGameStatus();
+            
+            this.checkNumberOfCards();
 
             this.checkMouseOverFavela();
 
@@ -110,6 +120,12 @@ public class Game {
             }
         }
     }
+    
+    private void checkNumberOfCards(){
+            if ((Data.player.getCards().size() == 5)&&(window.isActive())){
+                this.showTradeCards();
+            }
+        }
 
     private void checkMouseOverFavela() {
         Favela favela;
@@ -283,6 +299,9 @@ public class Game {
             sprite.x = 986;
             sprite.y = 614;
             sprite.draw();
+            if (mouse.isLeftButtonPressed()) {
+                this.showTradeCards();
+            }
         } else if (mouse.isOverArea(986, 684, 1346, 744)) {
             sprite.loadImage("media/menu/passarJogadaVerde.png");
             sprite.x = 986;
@@ -367,6 +386,65 @@ public class Game {
             } else if (Data.status == Status.MOVING) {
             }
         }
+    }
+    
+            
+    private void showTradeCards() {
+        panel = new JFrame("Troca de Cartas");
+        Container pane = panel.getContentPane();
+        GridLayout grade = new GridLayout(0, 5);
+        pane.setLayout(grade);
+        JPanel pane2 = new JPanel();
+        pane2.setSize(pane.getWidth(), 500);
+        pane2.setLayout(new FlowLayout(FlowLayout.CENTER));
+        JPanel pane3 = new JPanel();
+        pane3.setLayout(new FlowLayout(FlowLayout.CENTER));
+        pane3.setSize(100, 20);
+        JButton buttonOk = new JButton("OK");
+        JButton buttonCancelar = new JButton("Cancelar");
+        final ArrayList<Card> cartasEscolhidas = new ArrayList<Card>();
+        final Map<JCheckBox, Card> itsCards = new HashMap<JCheckBox, Card>();
+        for (Card card : Data.player.getCards()) {
+            JPanel painel = new JPanel();
+            JLabel label = new JLabel(new ImageIcon(card.getImage()));
+            painel.add(label);
+            JCheckBox checkBox = new JCheckBox();
+            itsCards.put(checkBox, card);
+            checkBox.addItemListener(new ItemListener() {
+                @Override
+                public void itemStateChanged(ItemEvent ie) {
+                    if (ie.getStateChange() == ItemEvent.SELECTED) {
+                        cartasEscolhidas.add(itsCards.get(ie.getItemSelectable()));
+                    } else {
+                        cartasEscolhidas.remove(itsCards.get(ie.getItemSelectable()));
+                    }
+                }
+            });
+            painel.add(checkBox);
+            pane.add(painel);
+        }
+        pane3.add(buttonOk);
+        pane3.add(buttonCancelar);
+
+        pane.add(pane2);
+        pane.add(pane3);
+        buttonOk.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Data.player.tradeCards(cartasEscolhidas);
+                panel.dispose();
+            }
+        });
+        buttonCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panel.dispose();
+            }
+        });
+
+        panel.setSize(1300, 600);
+        panel.setResizable(true);
+        panel.setVisible(true);
     }
 
     private void showAttackPanel() {
