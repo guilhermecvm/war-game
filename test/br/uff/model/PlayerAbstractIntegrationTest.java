@@ -6,14 +6,9 @@ package br.uff.model;
 
 import java.util.ArrayList;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import br.uff.model.PlayerAbstract;
-import br.uff.model.PlayerUser;
-import br.uff.model.PlayerIA;
 
 /**
  *
@@ -39,15 +34,6 @@ public class PlayerAbstractIntegrationTest {
         PlayerIA ia = new PlayerIA("IA", "imagem");
         ia.buyCard();
         assertEquals(card, ia.getCards().get(ia.getCards().size() - 1));
-    }
-
-    @Test
-    public void testPassTurn() {
-        PlayerIA ia = (PlayerIA) Data.players.get(2);
-        Data.player = ia;
-        Data.counter = 1;
-        ia.passTurn();
-        assertEquals(Data.player, Data.players.get(3));
     }
 
     @Test
@@ -110,97 +96,136 @@ public class PlayerAbstractIntegrationTest {
         assertEquals(Data.get_card_trades(), 1);
         assertEquals(ia.getArmyAvaiable(), Card.FIRST_TRADE_BONUS);
     }
-//
-//    @Test
-//    public void testInitDistribution() {
-//        System.out.println("initDistribution");
-//        PlayerAbstract instance = new PlayerAbstractImpl();
-//        instance.initDistribution();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    @Test
-//    public void testReceiveRoundArmy() {
-//        System.out.println("receiveRoundArmy");
-//        PlayerAbstract instance = new PlayerAbstractImpl();
-//        instance.receiveRoundArmy();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    @Test
-//    public void testSendArmyTo() {
-//        System.out.println("sendArmyTo");
-//        Favela destination = null;
-//        int numArmy = 0;
-//        PlayerAbstract instance = new PlayerAbstractImpl();
-//        boolean expResult = false;
-//        boolean result = instance.sendArmyTo(destination, numArmy);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    @Test
-//    public void testGetFavelas() {
-//        System.out.println("getFavelas");
-//        PlayerAbstract instance = new PlayerAbstractImpl();
-//        ArrayList expResult = null;
-//        ArrayList result = instance.getFavelas();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    @Test
-//    public void testGetEnemyFavelas() {
-//        System.out.println("getEnemyFavelas");
-//        PlayerAbstract instance = new PlayerAbstractImpl();
-//        ArrayList expResult = null;
-//        ArrayList result = instance.getEnemyFavelas();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    @Test
-//    public void testGetPossibleMoves() {
-//        System.out.println("getPossibleMoves");
-//        PlayerAbstract instance = new PlayerAbstractImpl();
-//        ArrayList expResult = null;
-//        ArrayList result = instance.getPossibleMoves();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    @Test
-//    public void testAttack() {
-//        System.out.println("attack");
-//        Favela favelaAttack = null;
-//        Favela favelaDefense = null;
-//        Integer attackQty = null;
-//        PlayerAbstract instance = new PlayerAbstractImpl();
-//        instance.attack(favelaAttack, favelaDefense, attackQty);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    @Test
-//    public void testMoveSoldiersAttack() {
-//        System.out.println("moveSoldiersAttack");
-//        Favela base = null;
-//        Favela destination = null;
-//        Integer qtyArmy = null;
-//        PlayerAbstract instance = new PlayerAbstractImpl();
-//        boolean expResult = false;
-//        boolean result = instance.moveSoldiersAttack(base, destination, qtyArmy);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    public class PlayerAbstractImpl extends PlayerAbstract {
-//    }
+
+    @Test
+    public void testReceiveRoundArmy() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        for (Favela f : Data.favelas.values()) {
+            f.setPlayer(null);
+        }
+        for (int i = 1; i <= 6; i++) {
+            Favela favela = Data.favelas.get(i + 3);
+            favela.setPlayer(ia);
+        }
+        ia.setArmyAvaiable(0);
+        ia.receiveRoundArmy();
+        assertEquals(ia.getArmyAvaiable(), 3);
+    }
+
+    @Test
+    public void testReceiveRoundArmy2() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        for (Favela f : Data.favelas.values()) {
+            f.setPlayer(null);
+        }
+        for (int i = 1; i <= 8; i++) {
+            Favela favela = Data.favelas.get(i + 3);
+            favela.setPlayer(ia);
+        }
+        ia.setArmyAvaiable(0);
+        ia.receiveRoundArmy();
+        assertEquals(ia.getArmyAvaiable(), 4);
+    }
+
+    @Test
+    public void testSendArmyTo() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        Favela destination = Data.favelas.get(1);
+        destination.setPlayer(ia);
+        destination.setNumArmy(0);
+        int armyAv = 5;
+        ia.setArmyAvaiable(armyAv);
+        assertEquals(ia.sendArmyTo(destination, armyAv), true);
+    }
+
+    @Test
+    public void testSendArmyTo2() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        Favela destination = Data.favelas.get(1);
+        destination.setPlayer(ia);
+        destination.setNumArmy(0);
+        int armyAv = 5;
+        ia.setArmyAvaiable(armyAv);
+        assertEquals(ia.sendArmyTo(destination, armyAv + 1), false);
+    }
+
+    @Test
+    public void testGetFavelas() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        for (Favela f : Data.favelas.values()) {
+            f.setPlayer(null);
+        }
+        ArrayList<Favela> favelas = new ArrayList<Favela>();
+        for (int i = 1; i <= 3; i++) {
+            Favela favela = Data.favelas.get(i);
+            favela.setPlayer(ia);
+            favelas.add(favela);
+        }
+        assertEquals(ia.getFavelas(), favelas);
+    }
+
+    @Test
+    public void testGetEnemyFavelas() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        PlayerIA ia2 = (PlayerIA) Data.players.get(3);
+        for (Favela f : Data.favelas.values()) {
+            f.setPlayer(null);
+        }
+        ArrayList<Favela> favelas = new ArrayList<Favela>();
+        for (int i = 1; i <= 3; i++) {
+            Favela favela = Data.favelas.get(i);
+            favela.setPlayer(ia2);
+            favelas.add(favela);
+        }
+        assertEquals(ia.getEnemyFavelas(), favelas);
+    }
+
+    @Test
+    public void testGetPossibleMoves() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        PlayerIA ia2 = (PlayerIA) Data.players.get(3);
+        for (Favela f : Data.favelas.values()) {
+            f.setPlayer(null);
+        }
+        for (int i = 1; i <= 5; i++) {
+            Favela favela = Data.favelas.get(i);
+            favela.setPlayer(ia2);
+        }
+        Favela favela = Data.favelas.get(4);
+        favela.setPlayer(ia);
+        ArrayList<Favela[]> possibleMoves = ia.getPossibleMoves();
+        Favela[] move = new Favela[2];
+        move[0] = favela;
+        move[1] = Data.favelas.get(1);
+        assertEquals(possibleMoves.get(0)[0], move[0]);
+        assertEquals(possibleMoves.get(0)[1], move[1]);
+        move[0] = favela;
+        move[1] = Data.favelas.get(3);
+        assertEquals(possibleMoves.get(1)[0], move[0]);
+        assertEquals(possibleMoves.get(1)[1], move[1]);
+        move[0] = favela;
+        move[1] = Data.favelas.get(5);
+        assertEquals(possibleMoves.get(2)[0], move[0]);
+        assertEquals(possibleMoves.get(2)[1], move[1]);
+        assertEquals(possibleMoves.size(), 3);
+    }
+
+    @Test
+    public void testMoveSoldiersAttack() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        for (Favela f : Data.favelas.values()) {
+            f.setPlayer(null);
+        }
+        for (int i = 1; i <= 3; i++) {
+            Favela favela = Data.favelas.get(i);
+            favela.setPlayer(ia);
+            favela.setNumArmy(5);
+        }
+        Favela base = Data.favelas.get(1);
+        Favela destination = Data.favelas.get(3);
+        destination.setNumArmy(0);
+        ia.moveSoldiersAttack(base, destination, 3);
+        assertEquals((int) destination.getNumArmy(), 3);
+        assertEquals((int) base.getNumArmy(), 2);
+    }
 }

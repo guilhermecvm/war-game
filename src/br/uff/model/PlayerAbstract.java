@@ -48,11 +48,6 @@ public abstract class PlayerAbstract implements Player {
     }
 
     @Override
-    public void passTurn() {
-        Data.player = Data.players.get((++Data.counter % Data.players.size()) + 1);
-    }
-
-    @Override
     public boolean canTradeCards() {
         if (this.cards.size() < 3) {
             return false;

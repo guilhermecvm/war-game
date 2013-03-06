@@ -19,17 +19,7 @@ public class PlayerIA extends PlayerAbstract {
     public void play() {
         this.tradeCardsIntelligence();
         this.distributeArmy();
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(PlayerIA.class.getName()).log(Level.SEVERE, null, ex);
-        }
         this.attackIntelligence();
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(PlayerIA.class.getName()).log(Level.SEVERE, null, ex);
-        }
         Helper.nextPlayer();
     }
 

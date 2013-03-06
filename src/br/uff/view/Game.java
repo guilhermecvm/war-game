@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -37,7 +39,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 
 public class Game {
-
+    
     Window window;
     Mouse mouse;
     Keyboard keyboard;
@@ -45,31 +47,31 @@ public class Game {
     Sprite sprite;
     JComboBox comboAtaque;
     JFrame panel;
-
+    
     Game() {
         this.startGame();
-
+        
         this.loadObjects();
         this.loop();
         this.unloadObjects();
     }
-
+    
     private void startGame() {
         // Distribui Favelas para os players no inicio do jogo
         Helper.distributeFavelas();
         Data.status = Status.DISTRIBUTING;
-
+        
         for (Player p : Data.players.values()) {
             p.setArmyAvaiable(Data.INITIAL_ARMY);
             p.initDistribution();
         }
-
+        
         Data.player = Data.players.get(1);
         Data.player.receiveRoundArmy();
-
+        
         Data.deck = new Deck(Data.deck_init);
     }
-
+    
     private void loadObjects() {
         // A windows SEMPRE deve ser a primeira a ser CARREGADA
         window = new Window(1366, 768);
@@ -79,23 +81,23 @@ public class Game {
         fundo = new GameImage("media/map/Mapa War.png");
         sprite = new Sprite("media/map/rio.png");
     }
-
+    
     private void loop() {
         while (!keyboard.keyDown(Keyboard.ESCAPE_KEY)) {
             this.draw();
-
+            
             this.drawText();
-
+            
             this.checkGameStatus();
             
             this.checkNumberOfCards();
-
+            
             this.checkMouseOverFavela();
-
+            
             this.checkSelectedFavelas();
-
+            
             this.drawRegionInfo();
-
+            
             if (Helper.gameOver()) {
                 Player winner = Data.favelas.get(1).getPlayer();
                 window.update();
@@ -105,14 +107,24 @@ public class Game {
                 if (Data.player.getPossibleMoves().isEmpty()) {
                     Helper.nextPlayer();
                 } else {
-                    Data.player.play();
+                    Player current_player = Data.player;
+                    current_player.play();
+                    if (current_player.isIa()) {
+                        window.update();
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    
                 }
             }
-
+            
             window.update();
         }
     }
-
+    
     private void checkSelectedFavelas() {
         for (Favela favela : Data.favelas.values()) {
             if (Data.attacking == favela || Data.defending == favela) {
@@ -121,15 +133,15 @@ public class Game {
         }
     }
     
-    private void checkNumberOfCards(){
-            if ((Data.player.getCards().size() == 5)&&(window.isActive())){
-                this.showTradeCards();
-            }
+    private void checkNumberOfCards() {
+        if ((Data.player.getCards().size() == 5) && (window.isActive())) {
+            this.showTradeCards();
         }
-
+    }
+    
     private void checkMouseOverFavela() {
         Favela favela;
-
+        
         if (mouse.isOverArea(226, 372, 298, 627)) {
             favela = Data.favelas.get(1);
             this.drawFavela(favela);
@@ -202,7 +214,7 @@ public class Game {
             favela = Data.favelas.get(18);
             this.drawFavela(favela);
             this.checkMouseClickFavela(favela);
-		} else if ((mouse.isOverArea(423, 304, 526, 402))||(mouse.isOverArea(418, 257, 478, 307))) {
+        } else if ((mouse.isOverArea(423, 304, 526, 402)) || (mouse.isOverArea(418, 257, 478, 307))) {
             favela = Data.favelas.get(19);
             this.drawFavela(favela);
             this.checkMouseClickFavela(favela);
@@ -307,7 +319,7 @@ public class Game {
             sprite.x = 986;
             sprite.y = 684;
             sprite.draw();
-
+            
             if (mouse.isLeftButtonPressed()) {
                 Helper.nextPlayer();
             }
@@ -335,7 +347,7 @@ public class Game {
             }
         }
     }
-
+    
     private void checkMouseClickFavela(Favela favela) {
         if (mouse.isLeftButtonPressed()) {
             if (Data.status == Status.DISTRIBUTING) {
@@ -388,7 +400,6 @@ public class Game {
         }
     }
     
-            
     private void showTradeCards() {
         panel = new JFrame("Troca de Cartas");
         Container pane = panel.getContentPane();
@@ -411,6 +422,7 @@ public class Game {
             JCheckBox checkBox = new JCheckBox();
             itsCards.put(checkBox, card);
             checkBox.addItemListener(new ItemListener() {
+                
                 @Override
                 public void itemStateChanged(ItemEvent ie) {
                     if (ie.getStateChange() == ItemEvent.SELECTED) {
@@ -425,10 +437,11 @@ public class Game {
         }
         pane3.add(buttonOk);
         pane3.add(buttonCancelar);
-
+        
         pane.add(pane2);
         pane.add(pane3);
         buttonOk.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 Data.player.tradeCards(cartasEscolhidas);
@@ -436,17 +449,18 @@ public class Game {
             }
         });
         buttonCancelar.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.dispose();
             }
         });
-
+        
         panel.setSize(1300, 600);
         panel.setResizable(true);
         panel.setVisible(true);
     }
-
+    
     private void showAttackPanel() {
         panel = new JFrame(Data.attacking.getName() + " atacando " + Data.defending.getName());
         Container pane = panel.getContentPane();
@@ -477,18 +491,18 @@ public class Game {
         pane.add(pane2);
         pane.add(pane3);
         buttonOk.addActionListener(new ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                
                 int attackQty = ((Integer) comboAtaque.getSelectedItem()).intValue();
-
+                
                 attack(attackQty);
                 panel.dispose();
             }
         });
         buttonCancelar.addActionListener(new ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.dispose();
@@ -496,12 +510,12 @@ public class Game {
                 Data.defending = null;
             }
         });
-
+        
         panel.setSize(300, 300);
         panel.setResizable(true);
         panel.setVisible(true);
     }
-
+    
     private void attack(int attackQty) {
         try {
             Data.player.attack(Data.attacking, Data.defending, attackQty);
@@ -530,14 +544,14 @@ public class Game {
             Data.defending = null;
         }
     }
-
+    
     private void drawFavela(Favela favela) {
         sprite.loadImage("media/map/" + favela.getImg());
         sprite.x = favela.getX();
         sprite.y = favela.getY();
         sprite.draw();
     }
-
+    
     private void drawDices() {
         for (Dice dice : Data.dicesAttack.values()) {
             if (dice.getValue() > 0) {
@@ -556,23 +570,23 @@ public class Game {
             }
         }
     }
-
+    
     private void unloadObjects() {
         mouse = null;
         window.exit();
     }
-
+    
     private void draw() {
         fundo.draw();
-
+        
         this.drawDices();
     }
-
+    
     private void drawText() {
         window.drawText(Data.player.getName(), 990, 320, Color.black, Font.decode("ARIAL-REGULAR-36"));
         window.drawText("Membros para alocar: " + String.valueOf(Data.player.getArmyAvaiable()), 990, 350, Color.black, Font.decode("ARIAL-REGULAR-22"));
     }
-
+    
     private void drawRegionInfo() {
         for (Favela favela : Data.favelas.values()) {
             sprite.loadImage("media/" + favela.getPlayer().getImg());
@@ -582,7 +596,7 @@ public class Game {
             window.drawText(String.valueOf(favela.getNumArmy()), favela.getArmyX() + 5, favela.getArmyY() + 15, Color.white, Font.decode("ARIAL-REGULAR-12"));
         }
     }
-
+    
     private void checkGameStatus() {
         if (Data.status == Status.DISTRIBUTING) {
             if (Data.player.getArmyAvaiable() == 0) {

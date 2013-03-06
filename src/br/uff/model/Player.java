@@ -36,7 +36,6 @@ public interface Player {
 
     public void play();
 
-    public void passTurn();
     //attackQty = num membros (sem incluir o que tem que ficar na favela)
 
     public void attack(Favela FavelaAttack, Favela FavelaDefense, Integer attackQty);
