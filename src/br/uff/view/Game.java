@@ -397,7 +397,7 @@ public class Game {
                         }
                     } else {
                         if (favela.isNeighbour(Data.attacking)) {
-                            if (JOptionPane.showConfirmDialog(window, "Deseja movimentar tropas?") == JOptionPane.OK_OPTION) {
+                            if (JOptionPane.showConfirmDialog(window, "Deseja movimentar membros?") == JOptionPane.OK_OPTION) {
                                 Data.defending = favela;
                                 String numArmy = JOptionPane.showInputDialog(window, "Quantos membros deseja alocar nessa favela?", "Alocando Membros", JOptionPane.INFORMATION_MESSAGE);
                                 Data.player.moveSoldiersAttack(Data.attacking, Data.defending, Integer.parseInt(numArmy));
@@ -500,7 +500,7 @@ public class Game {
         comboAtaque.setSize(50, 50);
         pane.add(numArmyAtaque);
         pane.add(numArmyDefesa);
-        pane2.add(new JLabel("Com quantos exércitos você quer atacar: "));
+        pane2.add(new JLabel("Com quantos membros você quer atacar: "));
         pane2.add(comboAtaque);
         pane3.add(buttonOk);
         pane3.add(buttonCancelar);
