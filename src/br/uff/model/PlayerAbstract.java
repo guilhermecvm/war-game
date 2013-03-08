@@ -189,7 +189,7 @@ public abstract class PlayerAbstract implements Player {
         // Aumenta army para distribuir caso seja dono de um continente
         for (Continent cont : Data.continents.values()) {
             if (this.getFavelas().containsAll(cont.getFavelas())) {
-                this.setArmyAvaiable(this.getArmyAvaiable() + cont.getFavelas().size() / 2);
+                this.setArmyAvaiable(this.getArmyAvaiable() + cont.getBonus());
             }
         }
     }

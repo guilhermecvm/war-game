@@ -30,12 +30,12 @@ public class Data {
     public static Map<Integer, Continent> continents = new HashMap<Integer, Continent>();
 
     static {
-        continents.put(1, new Continent("Zona Oeste", 10));
-        continents.put(2, new Continent("Baixada", 10));
-        continents.put(3, new Continent("Avenida Brasil", 10));
-        continents.put(4, new Continent("Zona Norte", 10));
-        continents.put(5, new Continent("Central", 10));
-        continents.put(6, new Continent("Zona Sul", 10));
+        continents.put(1, new Continent("Zona Oeste", 2));
+        continents.put(2, new Continent("Baixada", 4));
+        continents.put(3, new Continent("Avenida Brasil", 3));
+        continents.put(4, new Continent("Zona Norte", 6));
+        continents.put(5, new Continent("Central", 2));
+        continents.put(6, new Continent("Zona Sul", 3));
     }
     public static Map<Integer, Player> players = new HashMap<Integer, Player>();
 

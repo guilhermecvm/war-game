@@ -37,6 +37,22 @@ public class PlayerAbstractIntegrationTest {
     }
 
     @Test
+    public void testBuyCard2() {
+        Data.trash = (ArrayList<Card>) Data.deck.getCards().clone();
+        Card card = Data.deck.getCards().get(0);
+        ArrayList<Card> deck = new ArrayList<Card>();
+        ArrayList<Card> afterDeck = (ArrayList<Card>) Data.trash.clone();
+        deck.add(card);
+        Data.deck.setCards(deck);
+        PlayerIA ia = new PlayerIA("IA", "imagem");
+        ia.buyCard();
+        assertEquals(card, ia.getCards().get(ia.getCards().size() - 1));
+        assertEquals(Data.trash, new ArrayList<Card>());
+        assertEquals(Data.deck.getCards().containsAll(afterDeck), true);
+        assertEquals(Data.deck.getCards().size(), afterDeck.size());
+    }
+
+    @Test
     public void testCanTradeCards() {
         PlayerIA ia = (PlayerIA) Data.players.get(2);
         Card card1 = new Card(Card.TYPE_CIRCLE, null, "imagem");
@@ -79,6 +95,18 @@ public class PlayerAbstractIntegrationTest {
     }
 
     @Test
+    public void testCanTradeCards4() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        Card card1 = new Card(Card.TYPE_CIRCLE, null, "imagem");
+        Card card2 = new Card(Card.TYPE_TRIANGLE, null, "imagem");
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(card2);
+        cards.add(card1);
+        ia.setCards(cards);
+        assertEquals(ia.canTradeCards(), false);
+    }
+
+    @Test
     public void testTradeCards() {
         PlayerIA ia = (PlayerIA) Data.players.get(2);
         Card card1 = new Card(Card.TYPE_CIRCLE, null, "imagem");
@@ -95,6 +123,61 @@ public class PlayerAbstractIntegrationTest {
         assertEquals(ia.getCards().size(), 0);
         assertEquals(Data.get_card_trades(), 1);
         assertEquals(ia.getArmyAvaiable(), Card.FIRST_TRADE_BONUS);
+    }
+
+    @Test
+    public void testTradeCards2() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        Card card1 = new Card(Card.TYPE_CIRCLE, null, "imagem");
+        Card card2 = new Card(Card.TYPE_SQUARE, null, "imagem");
+        Card card3 = new Card(Card.TYPE_TRIANGLE, null, "imagem");
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(card3);
+        cards.add(card2);
+        cards.add(card1);
+        ia.setCards(cards);
+        ia.setArmyAvaiable(0);
+        Data.set_card_trades(0);
+        ia.tradeCards(cards);
+        assertEquals(ia.getCards().size(), 0);
+        assertEquals(Data.get_card_trades(), 1);
+        assertEquals(ia.getArmyAvaiable(), Card.FIRST_TRADE_BONUS);
+    }
+
+    @Test
+    public void testTradeCards3() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        Card card1 = new Card(Card.TYPE_CIRCLE, null, "imagem");
+        Card card2 = new Card(Card.TYPE_CIRCLE, null, "imagem");
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(card2);
+        cards.add(card1);
+        ia.setCards(cards);
+        ia.setArmyAvaiable(0);
+        Data.set_card_trades(0);
+        ia.tradeCards(cards);
+        assertEquals(ia.getCards().size(), 2);
+        assertEquals(Data.get_card_trades(), 0);
+        assertEquals(ia.getArmyAvaiable(), 0);
+    }
+
+    @Test
+    public void testTradeCards4() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        Card card1 = new Card(Card.TYPE_CIRCLE, null, "imagem");
+        Card card2 = new Card(Card.TYPE_CIRCLE, null, "imagem");
+        Card card3 = new Card(Card.TYPE_SQUARE, null, "imagem");
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(card3);
+        cards.add(card2);
+        cards.add(card1);
+        ia.setCards(cards);
+        ia.setArmyAvaiable(0);
+        Data.set_card_trades(0);
+        ia.tradeCards(cards);
+        assertEquals(ia.getCards().size(), 3);
+        assertEquals(Data.get_card_trades(), 0);
+        assertEquals(ia.getArmyAvaiable(), 0);
     }
 
     @Test
@@ -125,6 +208,22 @@ public class PlayerAbstractIntegrationTest {
         ia.setArmyAvaiable(0);
         ia.receiveRoundArmy();
         assertEquals(ia.getArmyAvaiable(), 4);
+    }
+
+    @Test
+    public void testReceiveRoundArmy3() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        for (Favela f : Data.favelas.values()) {
+            f.setPlayer(null);
+        }
+        for (int i = 1; i <= 4; i++) {
+            Favela favela = Data.favelas.get(i);
+            favela.setPlayer(ia);
+        }
+        ia.setArmyAvaiable(0);
+        ia.receiveRoundArmy();
+        int result = 3 + Data.continents.get(1).getBonus();
+        assertEquals(ia.getArmyAvaiable(), result);
     }
 
     @Test
@@ -224,8 +323,29 @@ public class PlayerAbstractIntegrationTest {
         Favela base = Data.favelas.get(1);
         Favela destination = Data.favelas.get(3);
         destination.setNumArmy(0);
-        ia.moveSoldiersAttack(base, destination, 3);
+        boolean resp = ia.moveSoldiersAttack(base, destination, 3);
+        assertEquals(resp, true);
         assertEquals((int) destination.getNumArmy(), 3);
         assertEquals((int) base.getNumArmy(), 2);
+    }
+
+    @Test
+    public void testMoveSoldiersAttack2() {
+        PlayerIA ia = (PlayerIA) Data.players.get(2);
+        for (Favela f : Data.favelas.values()) {
+            f.setPlayer(null);
+        }
+        for (int i = 1; i <= 3; i++) {
+            Favela favela = Data.favelas.get(i);
+            favela.setPlayer(ia);
+            favela.setNumArmy(5);
+        }
+        Favela base = Data.favelas.get(1);
+        Favela destination = Data.favelas.get(3);
+        destination.setNumArmy(0);
+        boolean resp = ia.moveSoldiersAttack(base, destination, 6);
+        assertEquals(resp, false);
+        assertEquals((int) destination.getNumArmy(), 0);
+        assertEquals((int) base.getNumArmy(), 5);
     }
 }
