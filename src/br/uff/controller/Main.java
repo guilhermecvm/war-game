@@ -1,5 +1,6 @@
 package br.uff.controller;
 
+import br.uff.jplay.Window;
 import java.util.Scanner;
 
 import br.uff.model.Data;
@@ -23,7 +24,7 @@ public class Main {
     public static void main(String[] args) {
     	//Distribui Regiões para os players no inicio do jogo
     	Helper.distributeFavelas();
-        Deck deck = new Deck();
+        Deck deck = new Deck(Data.deck_init);
     	
         while (true) {
             Scanner in = new Scanner(System.in);

@@ -18,16 +18,6 @@ public class Deck {
 
     public Deck(ArrayList<Card> cards) {
         Deck.cards = cards;
-    }
-
-    public Deck() {
-       Deck.cards = new ArrayList<Card>();
-        int[] types = Card.TYPES;
-        for (int i : types) {
-            for (int j = 0; j < 14; j++) {
-                Deck.cards.add(new Card(i));
-            }
-        }
         Deck.shuffle();
     }
 

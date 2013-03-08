@@ -12,6 +12,19 @@ public class Helper {
         return r.nextInt(6) + 1; //0~5 + 1 = 1~6
     }
 
+    public static boolean gameOver() {
+
+        boolean over = true;
+        Player winner = Data.favelas.get(1).getPlayer();
+        for (Favela f : Data.favelas.values()) {
+            if (f.getPlayer() != winner) {
+                over = false;
+                break;
+            }
+        }
+        return over;
+    }
+
     public static void distributeFavelas() {
         List<Favela> favelas = new ArrayList<Favela>();
         favelas.addAll(Data.favelas.values());
@@ -78,5 +91,34 @@ public class Helper {
             }
         }
         return resp;
+    }
+
+    public static void nextPlayer() {
+        Player player;
+        
+        Data.player.buyCard();
+        
+        if (Data.player.getId() == Data.players.size()) {
+            player = Data.players.get(1);
+        } else {
+            player = Data.players.get(Data.player.getId() + 1);
+        }
+
+        Data.player = player;
+
+        Data.player.receiveRoundArmy();
+        Data.status = Status.DISTRIBUTING;
+        Data.attacking = null;
+        Data.defending = null;
+        Helper.eraseDice();
+    }
+
+    public static void eraseDice() {
+        for (Dice dice : Data.dicesAttack.values()) {
+            dice.setValue(0);
+        }
+        for (Dice dice : Data.dicesDefense.values()) {
+            dice.setValue(0);
+        }
     }
 }

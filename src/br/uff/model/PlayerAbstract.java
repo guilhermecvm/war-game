@@ -4,13 +4,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.uff.controller.Main;
+import java.util.Random;
 
 public abstract class PlayerAbstract implements Player {
 
+    private int id;
     private String name;
     private int armyAvaiable = 0;
+    private boolean ia;
+    private String img;
     private ArrayList<Card> cards = new ArrayList<Card>();
+
+    public boolean isIa() {
+        return ia;
+    }
+
+    public void setIa(boolean ia) {
+        this.ia = ia;
+    }
 
     @Override
     public ArrayList<Card> getCards() {
@@ -24,20 +35,28 @@ public abstract class PlayerAbstract implements Player {
 
     @Override
     public void buyCard() {
-        Card card = Deck.getCards().remove(0);
+
+        Card card = Data.deck.getCards().remove(0);
         this.cards.add(card);
-        System.out.println("Comprou carta " + card);
+
+        System.out.println("Comprou carta " + card + " . Sobraram " + Data.deck.getCards().size() + " cartas.");
+
+        if (Data.deck.getCards().isEmpty()) {
+            Data.deck = new Deck((ArrayList<Card>) Data.trash.clone());
+            Data.trash = new ArrayList<Card>();
+        }
     }
 
     @Override
-    public void tradeCards(ArrayList<Card> cards) {
-        if (cards.size() != 3) {
+    public boolean canTradeCards() {
+        if (this.cards.size() < 3) {
+            return false;
         } else {
             int type_circle_count = 0;
             int type_square_count = 0;
             int type_triangle_count = 0;
-            for (Card card : cards) {
-                switch (card.type) {
+            for (Card card : this.cards) {
+                switch (card.get_type()) {
                     case Card.TYPE_CIRCLE: {
                         type_circle_count++;
                         break;
@@ -54,13 +73,76 @@ public abstract class PlayerAbstract implements Player {
             }
 
             if ((type_circle_count == 3 || type_square_count == 3 || type_triangle_count == 3) || (type_circle_count == 1 && type_square_count == 1 && type_triangle_count == 1)) {
-                for (Card card : cards) {
-                    this.cards.remove(card);
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+    }
+
+    @Override
+    public void tradeCards(ArrayList<Card> cards) {
+        if (cards.size() != 3) {
+        } else {
+            int type_circle_count = 0;
+            int type_square_count = 0;
+            int type_triangle_count = 0;
+            for (Card card : cards) {
+                switch (card.get_type()) {
+                    case Card.TYPE_CIRCLE: {
+                        type_circle_count++;
+                        break;
+                    }
+                    case Card.TYPE_SQUARE: {
+                        type_square_count++;
+                        break;
+                    }
+                    case Card.TYPE_TRIANGLE: {
+                        type_triangle_count++;
+                        break;
+                    }
                 }
-                this.armyAvaiable = Helper.numberOfBonusArmy();
-                Main.increment_card_trades();
+            }
+
+            if ((type_circle_count == 3 || type_square_count == 3 || type_triangle_count == 3) || (type_circle_count == 1 && type_square_count == 1 && type_triangle_count == 1)) {
+                ArrayList<Integer> index = new ArrayList<Integer>();
+
+                for (Card card : cards) {
+                    index.add(this.getCards().indexOf(card));
+                }
+                Collections.sort(index, Collections.reverseOrder());
+                for (Integer i : index) {
+                    Data.trash.add(this.getCards().remove((int) i));
+                }
+                this.armyAvaiable = this.armyAvaiable + Helper.numberOfBonusArmy();
+                Data.increment_card_trades();
             }
         }
+    }
+
+    @Override
+    public void initDistribution() {
+        ArrayList<Favela> favelas = this.getFavelas();
+        while (this.getArmyAvaiable() > 0) {
+            Random r = new Random();
+            int i = r.nextInt(favelas.size());
+            Favela favelaReinforce = favelas.get(i);
+            int reinforcements = 1;
+            this.setArmyAvaiable(this.getArmyAvaiable() - reinforcements);
+            favelaReinforce.setNumArmy(favelaReinforce.getNumArmy() + reinforcements);
+        }
+
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -83,10 +165,21 @@ public abstract class PlayerAbstract implements Player {
         this.armyAvaiable = armyAvaiable;
     }
 
-    public void updateArmy() {
+    @Override
+    public String getImg() {
+        return img;
+    }
+
+    @Override
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    @Override
+    public void receiveRoundArmy() {
         int numberOfFavelas = this.getFavelas().size();
 
-        // Aumenta army para distribuir de acordo com regiões dominadas
+        // Aumenta army para distribuir de acordo com favelas dominadas
         if (numberOfFavelas <= 6) {
             this.setArmyAvaiable(this.getArmyAvaiable() + 3);
         } else {
@@ -96,13 +189,14 @@ public abstract class PlayerAbstract implements Player {
         // Aumenta army para distribuir caso seja dono de um continente
         for (Continent cont : Data.continents.values()) {
             if (this.getFavelas().containsAll(cont.getFavelas())) {
-                this.setArmyAvaiable(this.getArmyAvaiable() + cont.getFavelas().size() / 2);
+                this.setArmyAvaiable(this.getArmyAvaiable() + cont.getBonus());
             }
         }
     }
 
+    @Override
     public boolean sendArmyTo(Favela destination, int numArmy) {
-        if (this.getFavelas().contains(destination)) {
+        if (this.getFavelas().contains(destination) && this.getArmyAvaiable() >= numArmy) {
             destination.setNumArmy(destination.getNumArmy() + numArmy);
             this.setArmyAvaiable(this.getArmyAvaiable() - numArmy);
             return true;
@@ -153,13 +247,11 @@ public abstract class PlayerAbstract implements Player {
         for (int i = 0; i < myFavelas.size(); i++) {
             Favela myFavela = myFavelas.get(i);
             ArrayList<Favela> neigbourhood = (ArrayList<Favela>) myFavela.getNeighbourhood();
-            if (myFavela.getNumArmy() > 1) {
-                for (int j = 0; j < neigbourhood.size(); j++) {
-                    Favela neigbour = neigbourhood.get(j);
-                    if (!neigbour.getPlayer().equals(this)) {
-                        Favela[] move = {myFavela, neigbour};
-                        moves.add(move);
-                    }
+            for (int j = 0; j < neigbourhood.size(); j++) {
+                Favela neigbour = neigbourhood.get(j);
+                if (!neigbour.getPlayer().equals(this)) {
+                    Favela[] move = {myFavela, neigbour};
+                    moves.add(move);
                 }
             }
         }
@@ -207,7 +299,7 @@ public abstract class PlayerAbstract implements Player {
         System.out.println("Ataque");
         for (int i = 0; i < attackQty; i++) {
             System.out.print(diceAttack.get(i) + ",");
-        	Data.dicesAttack.get(i+1).setValue(diceAttack.get(i));
+            Data.dicesAttack.get(i + 1).setValue(diceAttack.get(i));
         }
 
         System.out.println();
@@ -215,7 +307,7 @@ public abstract class PlayerAbstract implements Player {
         System.out.println("Defesa");
         for (int i = 0; i < defenseQty; i++) {
             System.out.print(diceDefense.get(i) + ",");
-        	Data.dicesDefense.get(i+1).setValue(diceDefense.get(i));
+            Data.dicesDefense.get(i + 1).setValue(diceDefense.get(i));
         }
 
         System.out.println();
@@ -237,8 +329,7 @@ public abstract class PlayerAbstract implements Player {
             }
         }
     }
-    
-    
+
     @Override
     public boolean moveSoldiersAttack(Favela base, Favela destination, Integer qtyArmy) {
         if (Helper.hasArmy(base, qtyArmy)) {
@@ -250,7 +341,7 @@ public abstract class PlayerAbstract implements Player {
         }
         System.out.println("Número de membros inválido. Deve ter pelo menos 1 membro tomando conta da base antiga! Digite novamente:");
         System.out.println("Origem: " + base.getName() + " => " + base.getNumArmy() + " membros.");
-        
+
         return false;
     }
 }

@@ -11,7 +11,7 @@ public class Favela {
     private Integer numArmy;
     private ArrayList<Favela> neighbourhood;
     private String img;
-    private Integer x, y, x1, x2, y1, y2;
+    private Integer x, y, armyX, armyY;
     
     public Favela(String name, Continent continent, String img) {
         this.name = name;
@@ -70,9 +70,11 @@ public class Favela {
         return neighbourhood;
     }
     
-    public void setPosition(Integer x, Integer y) {
+    public void setPosition(Integer x, Integer y, Integer armyX, Integer armyY) {
     	this.x = x;
     	this.y = y;
+    	this.armyX = armyX;
+    	this.armyY = armyY;
     }
     
 	public Integer getX() {
@@ -83,20 +85,12 @@ public class Favela {
 		return y;
 	}
 	
-	public Integer getX1() {
-		return x1;
+	public Integer getArmyX() {
+		return armyX;
 	}
 	
-	public Integer getX2() {
-		return x2;
-	}
-	
-	public Integer getY1() {
-		return y1;
-	}
-	
-	public Integer getY2() {
-		return y2;
+	public Integer getArmyY() {
+		return armyY;
 	}
 	
 	public String getImg() {
